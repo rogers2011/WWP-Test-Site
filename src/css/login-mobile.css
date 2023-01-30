@@ -1,0 +1,274 @@
+h1 {
+  margin-bottom: 19px !important;
+  font-size: 30px !important;
+}
+
+#login-body {
+    background-image: url('../BackgroundGifs/39.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+#age-restriction-message {
+    color: red;
+    font-size: 20px;
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+#form-container input {
+    font-size: 22px !important;
+}
+
+#form-container {
+    height: -webkit-fill-available;
+}
+
+#firebaseui-auth-container, #loader {
+    /* These next 5 lines are to center the content in the middle of the page*/
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  width:70% !important;
+}
+
+.firebaseui-container  {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.firebaseui-title {
+    font-size: xxx-large !important;
+    line-height: 1.5 !important;
+}
+
+.firebaseui-label {
+    font-size: xx-large !important;
+}
+
+.firebaseui-input {
+    font-size: xx-large !important;
+    margin-top: 3% !important;
+}
+
+.firebaseui-id-secondary-link {
+    font-size: x-large !important;
+}
+
+.firebaseui-id-submit {
+    font-size: x-large !important;
+}
+
+.firebaseui-tos {
+    font-size: large !important;
+}
+    
+#loader {
+    color: white;
+    font-size: 75px;
+    text-align: center;
+    font-weight: bold;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    overflow-y: scroll;
+  }
+  
+  body {
+    background: #c1bdba;
+    font-family: 'Titillium Web', sans-serif;
+  }
+  
+  #form-container a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: .5s ease;
+  }
+  #form-container a:hover {
+    color: #179b77;
+  }
+  
+  .form {
+    background: rgba(19, 35, 47, 0.9);
+    /* background: rgba(153,102,204, 0.9); */
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    width: 98%;
+    height: 98%;
+    margin-top: 150px;
+  }
+  
+  .tab-group {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .tab-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .tab-group a {
+    height: 100px;
+  }
+  .tab-group li a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+    padding: 15px;
+    background: rgba(160, 179, 176, 0.25);
+    color: #a0b3b0;
+    font-size: 29px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s ease;
+    height: 71px;
+    border: 1px solid white;
+  }
+  .tab-group li a:hover {
+    background: #179b77;
+    color: #ffffff;
+  }
+  .tab-group .active a {
+    background: #1ab188;
+    color: #ffffff;
+  }
+  
+  .tab-content > div:last-child {
+    display: none;
+  }
+  
+  #form-container h1 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: 300;
+    margin: 0 0 40px;
+  }
+  
+  #form-container label {
+    position: absolute;
+    transform: translateY(6px);
+    left: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease;
+    -webkit-backface-visibility: hidden;
+    pointer-events: none;
+    font-size: 18px;
+  }
+  #form-container label .req {
+    margin: 2px;
+    color: #1ab188;
+  }
+  
+  #form-container label.active {
+    transform: translateY(44px);
+    left: 13px;
+  }
+  #form-container label.active .req {
+    opacity: 0;
+  }
+  
+  #form-container label.highlight {
+    color: #ffffff;
+  }
+  
+  #form-container input, #form-container textarea {
+    font-size: 22px;
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    background: none;
+    background-image: none;
+    border: 1px solid #a0b3b0;
+    color: #ffffff;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  #form-container input:focus, #form-container textarea:focus {
+    outline: 0;
+    border-color: #1ab188;
+  }
+  
+  #form-container textarea {
+    border: 2px solid #a0b3b0;
+    resize: vertical;
+  }
+  
+  .field-wrap {
+    position: relative;
+    margin-bottom: 26px;
+    height: 15%;
+  }
+  
+  .top-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .top-row > div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+  }
+  .top-row > div:last-child {
+    margin: 0;
+  }
+  
+  .button {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #1ab188;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+  .button:hover, .button:focus {
+    background: #179b77;
+  }
+  
+  .button-block {
+    display: block;
+    width: 100%;
+    /* height: 100px; */
+    font-size: 26px;
+  }
+  
+  .forgot, .terms_of_service, .privacy_policy {
+    margin-top: -20px;
+    text-align: right;
+    color: white;
+    font-size: 21px;
+  }
+
+  .last-item {
+    margin-bottom: 35px;
+  }
+
+  #form-container li.tab {
+    width: 100%;
+  }
