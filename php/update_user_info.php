@@ -1,267 +1,125 @@
 <?php
 
-
-
 use PHPMailer\PHPMailer\PHPMailer;
-
 use PHPMailer\PHPMailer\Exception;
-
 use PHPMailer\PHPMailer\SMTP;
-
-
-
 // print_r("Printing Variable: " . $_POST['action']);
-
-
-
 // print("This should print");
-
 // echo "on the command line";
-
-
-
 // debug_to_console("printing to console");
-
-
-
 // 4 functions used to store and return user information from database
-
 class update_user_info
-
 {
-
-
-
     private $conn;
-
-
-
     // constructor
-
     function __construct()
-
     {
-
         require_once 'wwp_connect.php';
-
         // connecting to database
-
         $db = new wwp_connect();
-
         $this->conn = $db->connect();
-
-
-
         //    echo 'connected yo';
-
     }
-
-
 
     // destructor
-
     function __destruct()
-
     {
     }
-
-
 
     public function getSinglePostByUser($emailOfUser, $rowId)
-
     {
-
         $stmt = $this->conn->prepare("SELECT * FROM user_posts WHERE email = ? AND id > ? LIMIT 1");
-
         $stmt->bind_param("s", $emailOfUser, $rowId);
-
-
-
         $result = $stmt->execute();
-
         if (!$result) {
-
             echo "Failed to retrieve the user's posts.";
-
             return;
         } else {
-
             $stmt->bind_result($id, $email, $username1, $userpost, $userpost, $dateandtime, $image_url, $Likes1, $Dislikes1);
-
-
-
             $i = 0;
-
             while ($stmt->fetch()) {
-
                 $posts["id"] = $id;
-
                 $posts["email"] = $email;
-
                 $posts["username1"] = $username1;
-
                 $posts["userpost"] = $userpost;
-
                 $posts["dateandtime"] = $dateandtime;
-
                 $posts["image_url"] = $image_url;
-
                 $posts["Likes1"] = $Likes1;
-
                 $posts["Dislikes1"] = $Dislikes1;
-
                 $i++;
             }
-
-
-
             $posts["numPosts"] = $i;
         }
-
         $stmt->close();
-
-
-
         return $posts;
     }
-
-
-
     public function getPostsByUser($emailOfUser)
-
     {
-
         $stmt = $this->conn->prepare("SELECT * FROM user_posts WHERE email = ?");
-
         $stmt->bind_param("s", $emailOfUser);
-
-
-
         $result = $stmt->execute();
 
         if (!$result) {
-
             echo "Failed to retrieve the user's posts.";
-
             return;
         } else {
-
             $stmt->bind_result($id, $email, $username1, $userpost, $userpost, $dateandtime, $image_url, $Likes1, $Dislikes1);
-
-
-
             $i = 0;
 
             while ($stmt->fetch()) {
-
                 $posts["ids"][$i] = $id;
-
                 $posts["emails"][$i] = $email;
-
                 $posts["username1s"][$i] = $username1;
-
                 $posts["userposts"][$i] = $userpost;
-
                 $posts["dateandtimes"][$i] = $dateandtime;
-
                 $posts["image_urls"][$i] = $image_url;
-
                 $posts["Likes1s"][$i] = $Likes1;
-
                 $posts["Dislikes1s"][$i] = $Dislikes1;
-
                 $i++;
             }
-
-
-
             $posts["numPosts"] = $i;
         }
-
         $stmt->close();
-
-
-
         return $posts;
     }
-
-
 
     public function submitPost($email, $username1, $dateandtime, $image_url, $userpost)
-
     {
-
         $stmt = $this->conn->prepare("INSERT INTO user_posts(email, username1, dateandtime, image_url, userpost) VALUES(?, ?, ?, ?, ?)");
-
         $stmt->bind_param("sssss", $email, $username1, $dateandtime, $image_url, $userpost);
-
-
-
         $result = $stmt->execute();
 
         if (!$result) {
-
             echo 'Failed saving post in the database.';
-
             return;
         }
-
         $stmt->close();
-
-
-
         echo 'Post successfully saved!';
     }
 
-
-
     public function addNotification($email, $notification_text, $dateandtime)
-
     {
-
         $stmt = $this->conn->prepare("INSERT INTO notifications(email, notification_text, dateandtime) VALUES(?, ?, ?)");
-
         $stmt->bind_param("sss", $email, $notification_text, $dateandtime);
-
-
-
         $result = $stmt->execute();
 
         if (!$result) {
-
             echo 'Notification failed to be saved in database.';
-
             return;
         }
 
         $stmt->close();
-
-
-
         return "Notification successfully saved!";
     }
-
-
-
     public function removeNotification($email, $notification_text)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM notifications WHERE email = ? AND notification_text = ?");
-
         $stmt->bind_param("ss", $email, $notification_text);
-
-
-
         $result = $stmt->execute();
-
         if (!$result) {
-
             echo 'Notification failed to be removed from the database.';
-
             return;
         }
-
         $stmt->close();
 
 
@@ -3177,481 +3035,239 @@ class update_user_info
     // public function randomcodecheck($first_name, $last_name, $username1, $email, $password, $gender, $dob, $confirm)
 
     public function randomcodecheck($first_name, $last_name, $email, $username1, $confirm, $encrypted_password, $salt)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 20 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
-
         $stmt->close();
 
-
-
         // require '/usr/share/php/libphp-phpmailer/class.phpmailer.php';
-
         // require '/usr/share/php/libphp-phpmailer/class.smtp.php';
-
         require 'Exception.php';
-
         require 'PHPMailer.php';
-
         require 'SMTP.php';
-
         // require 'OAuth.php';
-
         // require 'POP3.php';
-
-
-
         $mail = new PHPMailer();
-
         $smtpobj = new SMTP();
-
-
-
         // Generate a random hash with the unique and rand functions
-
         // This is to ensure that every user gets a unique and non-repeating
-
         // random identifier
-
         $RandomCode = substr(md5(uniqid(rand())), 0, 10);
-
-
-
         // The Client's Email ID
-
         $to = $email;
-
-
-
         // Header Information
-
         // $header = "From: rogersjohn44@example.com";
-
-
-
         // The Subject of the email
-
         // $subject = "=?UTF-8?B?".base64_encode($subject)."?=";
-
-
-
         // $from_user = "=?UTF-8?B?".base64_encode($from_user)."?=";
-
         // $headers = "From: $from_user <$from_email>\r\n".
-
         // "MIME-Version: 1.0" . "\r\n" .
-
         // "Content-type: text/html; charset=UTF-8" . "\r\n";
-
-
-
         // The message with the confirmation code
-
-
         $thank_you_message = "Thank you for making your presence more known on WWP! The connection we all share on the platform is stronger with you doing so. \r\n\n";
-
         $link_explanation .= "Click the link below to confirm your email and create your account!\n\n";
-
+        
+        //THIS LINK NEEDS TO TAKE YOU TO THE INDEX.JS TAB FOR REACTJS!!!!!!
         $confirmation_link = "https://worldwideprayer.world/email_confirmation.php?RandomCode=$RandomCode&first_name=$first_name&last_name=$last_name&email=$email&username1=$username1&confirm=1&encrypted_password=$encrypted_password&salt=$salt";
         $confirmation_link_as_hyperlink = "<a href='$confirmation_link'>Join World Wide Prayer!</a>";
-
         $email_ending .= "This link will expire in 5 minutes.";
-
         $message = '<!DOCTYPE html>
-<head>
-</head>
-<body>
-
-<div>
-        <p>' . $thank_you_message . '</p>
-        <p>' . $link_explanation . '</p>
-        <br>
-        ' . $confirmation_link_as_hyperlink . '
-        <br>
-        <p>' . $email_ending . '</p>
-</div>
-</body>
-</html>';
-
-
+        <head>
+        </head>
+        <body>
+            <div>
+                <p>' . $thank_you_message . '</p>
+                <p>' . $link_explanation . '</p>
+                <br>
+                ' . $confirmation_link_as_hyperlink . '
+                <br>
+                <p>' . $email_ending . '</p>
+            </div>
+        </body> 
+        </html>';
         // Send the actual mail and wait for status
-
         // $sentmail = mail($to, $subject, $message, $header);
-
-
-
         $mail->setFrom("worldwideprayer@worldwideprayer.world");
-
         $mail->addAddress($email);
-
         $mail->Subject = "World Wide Prayer - Confirmation";
-
         $mail->Body = $message;
-
         // $mail->IsSMTP();
-
         $mail->SMTPDebug = 2; // show debugging stuff
-
         $mail->SMTPSecure = "ssl";
-
-        $mail->isHTML(true); 
-
+        $mail->isHTML(true);
         // $mail->Host = "ssl://smtp.gmail.com";
-
         // $mail->Host = "88.214.194.166";
-
         $mail->Host = "mail.worldwideprayer.world";
-
         echo "  Host: $mail->Host  ";
-
         $mail->SMTPAuth = true;
-
         $mail->Port = 465;
-
         // $mail->Port = 25;
-
-
-
         // Set your existing gmail address as user name
-
         $mail->Username = "worldwideprayer@worldwideprayer.world";
-
-
-
         // Set the password of your gmail address here
 
         $mail->Password = ".cK0=!S3~ECx";
-
-
-
         if (!$mail->send()) {
-
             echo "Mail failed to send: " . $mail->ErrorInfo;
-
             return false;
         } else {
-
-
-
             // If email is sent or not sent
-
             // if($sentmail){
-
             // Check for successful store
-
-
-
             // User data is inserted in the database using query "INSERT INTO".
-
             // The query we used is known as Prepared Statements in MySQLi.
-
             // In our SQL, we insert a question mark (?) where we want to substitute in an integer, string, double or blob value.
-
             $stmt = $this->conn->prepare("INSERT INTO random_code(RandomCode, email) VALUES(?, ?)");
-
-
-
             // This function binds the parameters to the SQL query and tells the database what the parameters are.
-
             // The â€œssssssâ€� argument lists the types of data that the parameters are.
-
             // The s character tells MySQL that the parameter is a string
-
             // By telling MySQL what type of data to expect, we minimize the risk of SQL injections.
-
             $stmt->bind_param("ss", $RandomCode, $email);
-
             // Checking successful storage using $result
-
             $result = $stmt->execute();
-
             $stmt->close();
 
-
-
             if ($result) {
-
                 $stmt = $this->conn->prepare("SELECT RandomCode, email FROM random_code WHERE email = ?");
-
                 $stmt->bind_param("s", $email);
-
                 $stmt->execute();
-
                 $stmt->bind_result($token2, $token3);
-
-
-
                 // Information returned in the form of $confirm_user has the information regarding
-
                 // name, email, gender etc. which will be later used by Android App
-
                 $i = 0;
-
                 while ($stmt->fetch()) {
-
                     $user[$i]["first_name"] = $first_name;
-
                     $user[$i]["last_name"] = $last_name;
-
                     // $user["username1"] = $username1;
-
                     $user[$i]["email"] = $email;
-
                     // $user["gender"] = $gender;
-
                     // $user["dob"] = $dob;
-
                     $user[$i]["confirm"] = $confirm;
-
                     // $user = TRUE;
-
                     $i++;
                 }
 
                 $stmt->close();
-
                 // echo "Your Confirmation link Has Been Sent To Your Email Address.";
 
                 return $user;
             } else {
-
                 // $user = false;
-
                 // echo "Cannot send Confirmation link to your e-mail address";
-
                 return false;
             }
         }
     }
 
-
-
     // Storing new user
-
     // Returns user details
-
     public function StoreUserInfo($first_name, $last_name, $username1, $email, $password, $gender, $dob, $confirm)
-
     {
-
         // Password is encrypted using hash function.
-
         // This in turn is encrypted by base84_encode()
-
         $hash = $this->hashFunction($password);
-
         $encrypted_password = $hash["encrypted"]; // encrypted password
-
         $salt = $hash["salt"]; // salt
-
-
-
         // User data is inserted in the database using query "INSERT INTO".
-
         // The query we used is known as Prepared Statements in MySQLi.
-
         // In our SQL, we insert a question mark (?) where we want to substitute in an integer, string, double or blob value.
-
         $stmt = $this->conn->prepare("INSERT INTO user_info(first_name, last_name, username1, email, encrypted_password, salt, gender, dob, confirm, profile_pic_ref) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
-
-
-
         // This function binds the parameters to the SQL query and tells the database what the parameters are.
-
         // The â€œssssssâ€� argument lists the types of data that the parameters are.
-
         // The s character tells MySQL that the parameter is a string
-
         // By telling MySQL what type of data to expect, we minimize the risk of SQL injections.
-
         $profile_pic_ref = "hello";
-
         $stmt->bind_param("ssssssssss", $first_name, $last_name, $username1, $email, $encrypted_password, $salt, $gender, $dob, $confirm, $profile_pic_ref);
-
         // Checking successful storage using $result
-
         $result = $stmt->execute();
-
         $stmt->close();
 
-
-
         // Check for successful store
-
         if ($result) {
-
             $stmt = $this->conn->prepare("SELECT first_name, last_name, username1, email, encrypted_password, salt, gender, dob, confirm FROM user_info WHERE email = ?");
-
             $stmt->bind_param("s", $email);
-
             $stmt->execute();
-
             $stmt->bind_result($token2, $token3, $token4, $token5, $token6, $token7, $token8, $token9, $token10);
-
-
-
             // Information returned in the form of $user has the information regarding
-
             // name, email, gender etc. which will be later used by Android App
-
             while ($stmt->fetch()) {
-
                 $user["email"] = $token5;
             }
-
             $stmt->close();
-
             return $user;
         } else {
-
             return false;
         }
     }
 
-
-
     // Encrypting password @param password returns salt and encrypted password
-
     public function hashFunction($password)
-
     {
-
         $salt = sha1(rand());
-
         $salt = substr($salt, 0, 10);
-
         $encrypted = base64_encode(sha1($password . $salt, true) . $salt);
-
         $hash = array(
-
             "salt" => $salt,
-
             "encrypted" => $encrypted
-
         );
-
         return $hash;
     }
 
-
-
     // Get user by email and password
-
     public function VerifyUsernameAuthentication($username1, $password)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 5 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
-
         $stmt->close();
-
-
-
         // Entry is selected from table user_info according to username1 id provided.
-
         $stmt = $this->conn->prepare("SELECT first_name, last_name, username1, email, encrypted_password, salt, gender, dob, confirm, profile_pic_ref, About_Me FROM user_info WHERE email = ?");
-
         $stmt->bind_param("s", $email);
 
-
-
         // If there exist any entry in database then its password is matched against the one provided by user in android login form.
-
         if ($stmt->execute()) {
-
             $stmt->bind_result($token2, $token3, $token4, $token5, $token6, $token7, $token8, $token9, $token10, $token11, $token12);
-
-
-
             // to pass informatio to original php script, which will pass it to java
-
             while ($stmt->fetch()) {
-
                 $user["first_name"] = $token2;
-
                 $user["last_name"] = $token3;
-
                 $user["username1"] = $token4;
-
                 $user["email"] = $token5;
-
                 $user["encrypted_password"] = $token6;
-
                 $user["salt"] = $token7;
-
                 $user["gender"] = $token8;
-
                 $user["dob"] = $token9;
-
                 $user["confirm"] = $token10;
-
                 $user["profile_pic_ref"] = $token11;
-
                 $user["About_Me"] = $token12;
             }
 
-
-
             $stmt->close();
-
-
-
             // Verifying user password
-
             $encrypted_password = $token6;
-
             $salt = $token7;
-
-
-
             // Matching is done by decrypting password using checkHashFunction.
-
             $hash = $this->CheckHashFunction($salt, $password);
-
-
-
             // Check for password equality
-
             if ($encrypted_password == $hash) {
-
                 // User authentication details are correct
-
                 return $user;
             } else {
-
                 // If password matched then $user is returned otherwise NULL.
-
                 return null;
             }
         } else {
-
             // If password matched then $user is returned otherwise NULL.
-
             return null;
         }
     }
 
-
-
     // Get user by email and password
-
     public function VerifyEmailAndPasswordAuthentication($email, $password)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 5 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
         $stmt->close();
 
@@ -3719,187 +3335,91 @@ class update_user_info
                 return null;
             }
         } else {
-
             // Even if the email does not exist in the db, the if statement above will be true and the code inside will run. So this will only
-
             // run if some error occurred preventing the SQL statement from going through.
-
             echo "SQL statement didn't work for some reason.";
-
             return null;
         }
     }
-
-
-
     // Decrypting password @param salt, password returns hash string
     public function CheckHashFunction($salt, $password)
     {
         $hash = base64_encode(sha1($password . $salt, true) . $salt);
         return $hash;
     }
-
-
-
     // Check if user exists or not
 
     public function CheckExistingUserEmail($email)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 5 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
-
         $stmt->close();
-
-
-
         $stmt = $this->conn->prepare("SELECT email from user_info WHERE email = ?");
-
-
-
         $stmt->bind_param("s", $email);
-
-
-
         $stmt->execute();
-
-
-
         $stmt->store_result();
-
-
-
         // We are searching table user_info for the entry according to email provided by user.
-
         // If it exists then true is returned otherwise false.
-
         if ($stmt->num_rows > 0) {
-
             // user existed
-
             $stmt->close();
-
             return true;
         } else {
-
             // user not existed
-
             $stmt->close();
-
             return false;
         }
     }
-
-
-
     // Check user is existed or not
 
     public function CheckExistingUserEmailRandomCodeTable($email)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 20 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
-
         $stmt->close();
-
-
-
         $stmt = $this->conn->prepare("SELECT email from random_code WHERE email = ?");
-
-
-
         $stmt->bind_param("s", $email);
-
-
-
         $stmt->execute();
-
-
-
         $stmt->store_result();
-
-
-
         // We are searching table random_code for the entry according to email provided by user.
-
         // If it exists then true is returned otherwise false.
 
         if ($stmt->num_rows > 0) {
-
             // user existed
-
             $stmt->close();
-
             return true;
         } else {
-
             // user not existed
-
             $stmt->close();
-
             return false;
         }
     }
 
-
-
     // Check user is existed or not
-
     public function CheckExistingUsername($username1)
-
     {
-
         $stmt = $this->conn->prepare("DELETE FROM random_code WHERE CreatedAt < (NOW() - INTERVAL 20 MINUTE)");
-
         // $stmt->bind_param('s', $email);
-
         $stmt->execute();
-
         $stmt->close();
 
-
-
         $stmt = $this->conn->prepare("SELECT username1 from user_info WHERE username1 = ?");
-
-
-
         $stmt->bind_param("s", $username1);
-
-
-
         $stmt->execute();
-
-
-
         $stmt->store_result();
-
-
-
         // We are searching table user_info for the entry according to username1 provided by user.
-
         // If it exists then true is returned otherwise false.
 
         if ($stmt->num_rows > 0) {
-
             // user existed
-
             $stmt->close();
-
             return true;
         } else {
 
             // user not existed
-
             $stmt->close();
-
             return false;
         }
     }
