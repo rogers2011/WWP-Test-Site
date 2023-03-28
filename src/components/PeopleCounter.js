@@ -1,3 +1,4 @@
+import styles from '../css/people-counter.module.css'
 
 
 function PeopleCounter(props) {
