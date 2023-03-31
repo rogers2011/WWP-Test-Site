@@ -1,0 +1,1689 @@
+ 
+html {
+  scroll-behavior: smooth
+}
+ 
+ .tox-tinymce {
+  min-height: 500px;
+}
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  /* padding-top: 100px; */
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/ opacity */
+}
+
+#myModal .modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  z-index: 3;
+}
+
+#caption {
+  margin: auto;
+  display: none;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+  z-index: 3;
+}
+
+.modal-content,
+#caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    z-index: 3;
+}
+
+ #barba-wrapper {
+  height: fit-content;
+ }
+
+ .testimonial_row_category {
+   color: aqua;
+ }
+
+  #intentions_menu_input_container, #testimonials_menu_input_container {
+    margin: 0 10px;
+  }
+
+  #intentions_menu_search_input, #testimonials_menu_search_input {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #addedTagsContainer {
+    display: flex;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      overflow-wrap: anywhere;
+  }
+  
+  .category_label {
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .intention_row_category, .testimonial_row_category, .pearls_row_category, 
+  .prayer_rooms_row_category {
+    color: purple;
+    margin-left: auto;
+    margin-right: 10px;
+    overflow-wrap: anywhere;
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  .intention_row_category:hover, .testimonial_row_category:hover, .pearls_row_category:hover, 
+  .prayer_rooms_row_category:hover {
+    color: aqua;
+    margin-left: auto;
+    margin-right: 10px;
+    overflow-wrap: anywhere;
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  hr.create_intention_title_divider, hr.create_testimonial_title_divider {
+    border-top: 2px solid purple;
+    width: 90%;
+    margin-top: 0;
+  }
+
+ .create_intention_title, .create_testimonial_title {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+ }
+ 
+ #post_intention_button, #post_testimonial_button,
+ #show_testimonial_creator_button, #show_intention_creator_button {
+   cursor: pointer;
+   padding: 15px;
+  margin: 10px auto;
+ }
+
+ #create_testimonial_container, #create_intention_container {
+  transition: ease 0.5s, .6s ease opacity, .6s ease transform;
+}
+
+ .intention_text, .testimonial_text {
+  overflow: auto;
+    max-height: 300px;
+    overflow-wrap: anywhere;
+}
+ 
+ #intentions_text_area, #intention_title_input, 
+ .intention_title_input_container, .create_intention_container_1,
+ .create_intention_container_2, #intention_tag_input, .intention_tag_input_container,
+ #testimonials_text_area, #testimonial_title_input, 
+ .testimonial_title_input_container, .create_testimonial_container_1,
+ .create_testimonial_container_2, #testimonial_tag_input, .testimonial_tag_input_container {
+  width: 100%;
+ }
+ 
+ #intentions_text_area, #intention_title_input, #intention_tag_input,
+ #testimonials_text_area, #testimonial_title_input, #testimonial_tag_input {
+   border: 3px solid purple;
+ }
+
+ #intentions_text_area, #testimonials_text_area {
+  margin: 10px 0;
+  min-width: 100%;
+ }
+
+ .create_intention_container_3, .create_testimonial_container_3 {
+  display: none;
+  opacity: 0;
+  transform: scale(0);
+  flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 10px;
+ }
+
+ hr.create_intention_divider, hr.create_testimonial_divider {
+  border-top: 5px solid purple;
+}
+
+ .sidenav .checkbox_list {
+  list-style-type: none;
+    float: left;
+    margin: 0;
+    text-align: left;
+    padding: 0;
+    overflow-y: scroll;
+    border: 5px solid black;
+    height: 150px;
+  }
+
+.sidenav .checkbox_list li {
+  float: left;
+  display: flex;
+  align-items: center;
+  background-color: rgba(232,200,256,.9);
+  justify-content: space-between;
+  border: 3px solid mediumpurple;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+
+.sidenav .checkbox_list li:hover {
+  background-color: mediumpurple;
+}
+
+.sidenav .checkbox_list li input {
+  width: 25px !important;
+    height: 25px;
+}
+ 
+ #prayer-rooms-tab-container, #prayer-intentions-tab-container,
+ #prayer-testimonials-tab-container, #pearls-tab-container {
+  display: flex;
+  /* justify-content: space-evenly; */
+  overflow: scroll;
+  padding: 2px;
+ }
+ 
+ #prayer-rooms-tab-container label, #prayer-intentions-tab-container label,
+ #prayer-testimonials-tab-container label, #pearls-tab-container label {
+  border: rebeccapurple solid 1px;
+  transition: 0.5s ease;
+  border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+ }
+ 
+ #prayer-rooms-tab-container label:hover, #prayer-intentions-tab-container label:hover,
+ #prayer-testimonials-tab-container label:hover, #pearls-tab-container label:hover {
+  background-color: rgba(110, 56, 164, 0.8);
+ }
+
+ .create_prayer_room_button {
+  border: purple 1px solid;
+   border-radius: 5px;
+   color: white !important;
+   display: flex !important;
+   justify-content: center;
+   align-items: center;
+   margin: 10px;
+   padding: 20px;
+}
+
+.create_intention_button {
+ border: purple 1px solid;
+ border-radius: 5px;
+ color: purple !important;
+ display: flex !important;
+ justify-content: center;
+ align-items: center;
+ margin: 10px;
+ padding: 20px;
+
+}
+
+.create_pearl_button{
+ border: purple 1px solid;
+ border-radius: 5px;
+ color: white !important;
+ display: flex !important;
+ justify-content: center;
+ align-items: center;
+ margin: 10px;
+ padding: 20px;
+}
+
+.create_testimonial_button{
+ border: purple 1px solid;
+ border-radius: 5px;
+ color: purple !important;
+ display: flex !important;
+ justify-content: center;
+ align-items: center;
+ margin: 10px;
+ padding: 20px;
+}
+
+.create_prayer_room_button:hover {
+  background-color: mediumpurple;
+  color: white!important;
+}
+
+.create_intention_button:hover {
+ background-color: mediumpurple;
+ color: white!important;
+}
+
+.create_pearl_button:hover {
+ background-color: mediumpurple;
+ color: white!important;
+}
+
+.create_testimonial_button:hover {
+ background-color: mediumpurple;
+ color: white!important;
+ 
+}
+
+
+
+ .room_row_info_container {
+   cursor: pointer;
+   display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    /* white-space: break-spaces; */
+ }
+
+ /* .room_row_info_container:hover {
+   background-color: mediumpurple;
+ } */
+
+ /* START OF STYLING MENU BUTTON AND MENU */
+
+ .bar1_menu_button, .bar2_menu_button, .bar3_menu_button {
+    width: 45px;
+    height: 7px;
+    background-color: #FFF;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  .change_menu_button .bar1_menu_button {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  
+  .change_menu_button .bar2_menu_button {opacity: 0;}
+  
+  .change_menu_button .bar3_menu_button {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+
+  /* .container_menu_button { */
+      /* position: absolute; */
+      /* left: 10px; */
+      /* top: 10px; */
+      /* margin: 10px 10px 10px 10px; */
+    /* display: inline-block; */
+    /* cursor: pointer; */
+  /* } */
+
+  .dropdown-content-container-menu {
+    overflow: hidden;
+ }
+ 
+ /* add a border when the dropdown is showing */
+ .dropdown-content-container-menu .show {
+    border: 1px solid purple;
+    display: block;
+ }
+
+.menu_container_container {
+    position: relative;
+    display: inline-block;
+}
+
+#homepage_menu_container.dropdown-content{ /* Elements id have the priority in CSS since they are the most specific!1!! THE DISPLAY HERE OVERRIDES WHAT .show DOES NO MATTER WHATTTTTTTTT - TOOK ME 5 HOURS TO FIGURE OUT */
+    min-height: 400px;
+   position: relative;
+   display: none;
+   /* top: 0; */
+   background-color: #000000;
+
+   box-shadow: 20px 36px #FFFFFF;
+   z-index: 1;
+
+   /* text-align: center; */
+   /* justify-content: center; */
+   margin: auto;
+   width: 100px;
+   max-height: 400px;
+   overflow: auto;
+     }
+
+  #homepage_menu_container.dropdown-content a {
+      /* margin: 40px;
+    line-height:30px; 
+    font-size:20px;
+     margin-right:3%;
+      font-family: Times; 
+      text-align:center;
+       vertical-align:middle;
+       position: absolute;
+       left: 60px;
+       top:40px; */
+       color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  /* display: block; */
+  }
+
+  .dropdown-content-menu {
+    min-height: 400px;
+    position: relative;
+    display: none;
+    /* top: 0; */
+    background-color: #000000;
+ 
+    box-shadow: 20px 36px #FFFFFF;
+    z-index: 1;
+ 
+    /* text-align: center; */
+    /* justify-content: center; */
+    margin: auto;
+    width: 100px;
+    max-height: 400px;
+    overflow: auto;
+  }
+
+  .dropdown-content-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    /* display: block; */
+  }
+
+  .dropbtn-menu {
+    /*background-color: #FF123456;*/
+    color: white;
+    /* padding: 16px; */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s ease;
+ }
+
+
+  #menu_list {
+    /* display: none; */
+    /* position: absolute; */
+    background-color: #f1f1f1;
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1;
+  }
+
+  /* END OF STYLING MENU BUTTON AND MENU */
+
+
+  /* START OF STYLING MENU DRAWER */
+
+  #username_in_menu {
+    font-size: 26px;
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: black;
+    font-family: ui-monospace;
+  }
+
+  #search-form-container {
+    margin-bottom: 10px;
+  }
+
+  
+
+  #prayer_rooms_logo_container {
+    /* padding: 5px;
+    transition: 0.5s ease; */
+  }
+
+  #pearlsMenuList .pearls_text, #intentionsMenuList .intention_text,
+  #testimonialsMenuList .testimonial_text {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    margin: 5px;
+}
+
+  /* #prayer_rooms_logo_container:hover, #intentions_logo_container:hover,
+   #main_menu_container:hover, #pearls_logo_container:hover,
+    #testimonials_logo_container:hover {
+    background-color: rgba(147, 112, 216, 0.4);
+  } */
+
+  #myRoomsMenuList .prayer_room_row, #intentionsMenuList .prayer_room_row,
+  #testimonialsMenuList .prayer_room_row, #pearlsMenuList .prayer_room_row,
+  #search_results_users .prayer_room_row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /* cursor: pointer; */
+    align-items: center;
+    border: purple 1px solid;
+    border-radius: 5px;
+    transition: ease 0.5s, .6s ease opacity, .6s ease transform;
+    opacity: 0;
+    transform: scale(0);
+    max-height: 400px;
+    overflow: auto;
+    text-align: left;
+    color: purple
+  }
+
+  #myRoomsMenuList .prayer_room_row:hover, #intentionsMenuList .prayer_room_row:hover,
+  #testimonialsMenuList .prayer_room_row:hover, #pearlsMenuList .prayer_room_row:hover,
+  #search_results_users .prayer_room_row:hover {
+    background-color: mediumpurple;
+  }
+
+  .room_second_row_container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  .room_options_container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+  }
+  
+  /* #myRoomsMenuList .prayer_room_row:hover {
+    background: lightcyan;
+  } */
+
+  /* #myRoomsMenuList .room_row_profile_pic:hover, #myRoomsMenuList .room_row_name:hover {
+    background: lightcyan;
+  } */
+  
+  .room_row_profile_pic {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    margin-left: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .entry_row_username {
+    font-weight: bold;
+    margin-left: 5px;
+  }
+
+
+  .entry_row_datetime {
+    width: 100%;
+  }
+  
+  .room_row_name {
+    color: purple;
+    cursor: pointer;
+    margin: 0 10px;
+    text-align: center;
+  }
+
+  .prayer_room_row:hover {
+    color: aqua !important;
+ 
+  }
+
+  .prayer_room_row:hover > .room_row_name {
+    color: aqua !important;
+ 
+  }
+
+  .prayer_room_row:hover > .intention_row_category {
+    color: aqua !important;
+  }
+
+  .prayer_room_row:hover > .testimonial_row_category {
+    color: aqua !important;
+  }
+
+  .prayer_room_row:hover > .pearls_row_category {
+    color: aqua !important;
+  }
+
+  .prayer_room_row:hover > .prayer_rooms_row_category {
+    color: aqua !important;
+  }
+
+  .room_row_time {
+    margin-left: 5px;
+    width: 100%;
+  }
+  
+  .room_row_closebtn {
+    font-size: 25px;
+    margin-right: 20px;
+    z-index: 2;
+    color: #00F7FF;
+    cursor: pointer;
+  }
+
+  .room_row_savebtn {
+    font-size: 25px;
+    margin-right: 5px;
+  }
+
+  .room_row_reportbtn {
+    margin-right: 5px;
+    cursor: pointer;
+    transition: ease 0.5s;
+   }
+
+  .room_row_savebtn:hover, .room_row_editbtn:hover,
+  .room_row_deletebtn:hover, .room_row_reportbtn:hover {
+    background-color: cornflowerblue;
+  }
+
+  .room_row_editbtn, .room_row_savebtn,
+  .room_row_deletebtn, .room_row_reportbtn {
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    color: #00F7FF;
+    cursor: pointer;
+    transition: ease 0.5s;
+  }
+  
+  #my_rooms_menu_title, #intentions_menu_title, 
+  #testimonials_menu_title, #pearls_menu_title {
+    font-size: 26px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+    color: #00F7FF;
+    font-weight: bold;
+    padding: 5px;
+    text-shadow: 1px 1px 2px purple, 0 0 25px black, 0 0 5px purple;
+  }
+
+  #prayer_rooms_menu_divider, #intentions_menu_divider,
+  #testimonials_menu_divider, #pearls_menu_divider {
+    border-top: 10px solid #eee;
+  }
+  
+  #logo_in_my_rooms_menu {
+    width: 250px;
+    height: 250px;
+    background: rgba(147,112,219, 0.2);
+    border: 1px solid purple;
+    padding: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #logo_in_pearls_menu {
+    background: aqua;
+    width: 250px;
+    height: 200px;
+    background: rgba(147,112,219, 0.2);
+    border: 1px solid purple;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #logo_in_intentions_menu {
+    width: 250px;
+    height: 200px;
+    background: rgba(147,112,219, 0.2);
+    border: 1px solid purple;
+    padding: 0px;
+    border-radius: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #logo_in_testimonials_menu {
+    width: 250px;
+    height: 200px;
+    background: rgba(147,112,219, 0.2);
+    border: 1px solid purple;
+    padding: 0px;
+    border-radius: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #prayer_menu_search_input, #pearls_menu_search_input {
+    border: 2px solid black;
+    width: 100%;
+    padding: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #prayer_rooms_menu_input_container, #pearls_menu_input_container {
+    margin: 0 10px;
+  }  
+
+  .menu-container {
+  transition: .6s ease opacity, .6s ease transform, 0.5s ease;
+  z-index: 1;
+  width: 100% !important;
+    height: 100% !important;
+    align-self: center;
+    text-align: center;
+    border: 1px solid rebeccapurple;
+    border-radius: 5px;
+    padding: 5px;
+    min-height: 50vh;
+    max-height: 50vh;
+}
+
+  .menu-container:hover {
+    background-color: rgba(147, 112, 216, 0.4);
+  }
+
+  #menu_list a img {
+    width: 35px;
+    height: 35px;
+  }
+
+  #follow img {
+    width: initial;
+  }
+
+  #menu_list a img#sign-in-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  #menu_list a img#donate-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  #menu_list a img#enterAbout-icon {
+    width: 25px;
+    height: 33px;
+  }
+
+  #menu_list a {
+    height: 45px;
+  }
+
+  #menu_list a, #follow {
+    color: black;
+    width: 100%; /* making width same as width of sidenav so buttons take up whole sidenav width */
+    /* width: 50%; */
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+    /* text-align: center; */
+    border: 1px solid #8a2be2;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 0px 0px 0px 3px rgb(0 0 0 / 20%), 0px 6px 20px 0px rgb(0 0 0 / 19%);
+    font-family: ui-monospace;
+ }
+
+ .logo_in_menu_container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 10px;
+}
+
+  #logo_in_menu {
+    /* margin: auto; */
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+    /* text-align: center; */
+    /* put logo in center horizontally and at top of menu */
+    /* position: absolute;
+    top: 10px;
+    right: 75px; */
+  }
+
+  .sidenav {
+    /* margin: 30px 0px 30px 0px; */
+    /* margin-bottom: 100px; */
+    /* height: 82vh; */
+    /* width: 0; initially 0 until user clicks the menu button then js increases it */
+    /* width: 80%; */
+    border: 2px solid mediumpurple;
+    border-radius: 5px;
+    margin: 0 auto;
+    /* opacity: 0; */
+    /* transform: scale(0); */
+    /* display: none; */
+    /* position: fixed; */
+    /* top: 0;
+    left: 0; */
+    /* right: 0; */
+    background-color: rgb(255, 255, 255);
+    overflow: auto;
+    transition: 0.5s;
+    padding-top: 30px; /* THIS IS THE DISTANCE FROM THE TOP THAT THE MENU ITEMS START (want them below the logo) */
+    /* padding-left: 50px; */ /* THIS IS THE DISTANCE FROM THE LEFT THAT THE MENU ITEMS START (*/
+    /* border: purple 1px solid; */
+    padding-bottom: 10vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .sidenav_description {
+    color: white;
+    margin: 0 10px;
+    text-align: center;
+    text-align: -webkit-center;
+    font-family: sans-serif;
+    font-size: 17px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .sidenav .menu-list-item {
+    /* padding: 8px 8px 8px 32px; */
+    /* margin: auto; */
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    /* color: #c9c7c7; */
+    display: block;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* #menu_list a a {
+      display: inline-block;
+  } */
+
+  .menu-item-icon {
+      width:35px;
+      height:35px;
+      transition: 0.5s; /* for when image changes when the user hovers over it */
+      margin: auto; /* centers image */
+      border-radius: 3px;
+  }
+
+  #menu_list .menu-list-item {
+   
+  /*  background-color: rgb(101, 0, 101);*/
+    padding-top: 4px;
+  }
+
+  #menu_list .btn:hover {
+    background-color: gray;
+  }
+
+  #menu_list #your-profile {
+    cursor: pointer;
+  }
+
+  #menu_list #donate {
+    padding: 0;
+}
+
+  /* don't want entire follow button color to change - just want people to be able to click the logos */
+  #menu_list #follow:hover {
+     /*  background-color: rgb(101, 0, 101); */
+  }
+
+  #menu_list #follow {
+      /* width: 50%; */
+      /* display: inline-table; */
+      display: table;
+      margin: 0 auto;
+      vertical-align: middle;
+      text-align: center;
+  }
+  
+  /* change background of social media icons when user hovers over them so user knows they can click them */
+  #menu_list #follow a:hover {
+     background-color: gray; 
+  }
+
+  #menu_list #follow a {
+    display: table-cell!important;
+    vertical-align: middle;
+    width: auto;
+    
+}
+
+#follow-button-title {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px; /* to put a space between the title and the buttons */
+    padding-left: 4px;
+}
+
+/* #follow-instagram-button { */
+    /* margin-left: 5px; */
+/* } */
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: fixed;
+    top: 0;
+    right: 100px;
+    font-size: 36px;
+    z-index: 2;
+    /* color: #00F7FF; */
+    color: black;
+    margin-top: -10px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: 0.5s ease;
+    border-radius: 5px;
+    display: none;
+  }
+
+  .sidenav .closebtn:hover {
+    background-color: rgba(147, 112, 216, 0.8);
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a, #follow, #your-profile, #prayer-settings, #enterWWPMap, #enterAbout, #donate, #homepage-button, #sign-in, #username_in_menu {font-size: 18px;} /* to make font size decrease when window size decreases */
+  }
+
+
+  /* sign-in/sign-out button doesn't have cursor automatically set to pointer because it doesn't have an href on it in html (the href is added in javascript cause the link changed depending on whether the user is logged in or not) */
+  #sign-in {
+    cursor: pointer;
+  }
+
+  /*STYLING SHARE ROW*/
+
+  #mySidenav hr {
+    border: 1px solid #00F7FF;
+    margin: 0;
+  }
+  
+  #share_row_container, #important_links_container {
+    width: 100%;
+    margin: 0 auto;
+    /* position: absolute; */
+    bottom: 0px;
+    display: inline-block;
+    margin-top: 30px;
+  }
+
+  #share_row, #important_links_row {
+      width: 100%;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  #important_links_row {
+    place-content: space-evenly;
+  }
+
+  #share_row .telegram-icon, #share_row .parler-icon, #share_row .mewe-icon {
+    /* height and width have to be the same in order for the whole image to appear (image is a square and is the background of the div) */
+      height: 60px;
+      width: 60px;
+      display:inline-block;
+      margin: 0px 10px;
+      transition: 0.5s; /* for when image changes when the user hovers over it */
+      border-radius: 10px;
+  }
+
+  #share_row .mewe-icon {
+    width: 100px;
+    vertical-align: super;
+    margin-bottom: 5px;
+  }
+
+  #share_row .parler-icon {
+    height: 50px;
+    width: 50px;
+    vertical-align: super;
+  }
+
+  #share_row .telegram-icon {
+    vertical-align: super;
+    /* height: 50px;
+    width: 50px; */
+  }
+
+  #important_links_row .givesendgo-icon {
+    height: 100px;
+    width: 200px;
+  }
+
+  #important_links_row .freenewworld-icon {
+    height: 100px;
+    width: 127px;
+  }
+
+
+/* set image sources */
+.gab-icon {
+  background: url('../images/gab_icon_transparent_background_purple.png');
+  background-size: cover;
+  background-position: center;
+}
+
+  .telegram-icon {
+    background: url('../images/telegram_icon_transparent.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .parler-icon {
+    background: url('../images/parler_icon_transparent.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .mewe-icon {
+    background: url('../images/mewe_icon_transparent.png');
+    background-size: cover;
+    background-position: center;
+    height: 16px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  .givesendgo-icon {
+    background: url('../images/givesendgo_icon_transparent_background_1.png');
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s ease;
+  }
+
+  .freenewworld-icon {
+    background: url('../images/freenewworld_icon_transparent_background_1.png');
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s ease;
+  }
+
+  /* change to darker images when user hovers over them */
+  .gab-icon:hover {
+    background: url('../images/gab_icon_transparent_background_006363.png');
+    background-size: cover;
+  } 
+
+  .telegram-icon:hover {
+    background: url('../images/telegram_icon_transparent_background_006363.png');
+    background-size: cover;
+  }
+
+  .parler-icon:hover {
+    background: url('../images/parler_icon_transparent_background_006363.png');
+    background-size: cover;
+  }
+
+  .mewe-icon:hover {
+    background: url('../images/mewe_icon_transparent_background_006363.png');
+    background-size: cover;
+  }
+
+  .givesendgo-icon:hover {
+    background: url('../images/givesendgo_icon_transparent_background_006363.png');
+    background-size: cover;
+  }
+
+  .freenewworld-icon:hover {
+    background: url('../images/freenewworld_icon_transparent_background_006363.png');
+    background-size: cover;
+  }
+
+  #share_row a {
+      display:inline-block!important;
+    }
+
+#share_row_title, #important_links_title {
+    display: table;
+    width: 99%;
+    margin: 0px 0px 12px 0px;
+    color: black;
+    font-size: 24px;
+    text-align: center;
+    font-family: ui-monospace;
+}
+
+  /*END STYLING SHARE ROW*/
+
+  /* END OF STYLING MENU DRAWER */
+
+
+
+    /* SNACKBAR STYLING */
+
+  /* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 10000; /* Add a z-index if needed */
+    bottom: 30px; /* 30px from the bottom */
+    left: 0;
+    right: 0;
+    margin: 0 20%;
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+    /* END SNACKBAR STYLING */
+
+
+    .cursor-pointer {
+      cursor: pointer;
+    }
+
+#sidenavs_container {
+  background-color: lightgray;
+}
+
+#main_menu_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+}
+
+#pearls_menu {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#prayer_rooms_menu {
+  right: 0;
+  top: 0;
+  text-align: -webkit-center;
+  transition: .6s ease opacity, .6s ease transform;
+  z-index: 1;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#menus_container {
+  max-width: 100vw;
+  width: 100%;
+  height: 100px;
+    display: flex;
+    /* position: fixed; */
+    /* top: 0; */
+    justify-content: space-evenly;
+    /* overflow: auto; */
+    background-color: rgba(147, 112, 216, 0.8);
+    transition: 0.6s ease, .6s ease opacity, .6s ease transform;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 10;
+}
+
+#prayer_rooms_button_logo, #intentions_button_logo,
+#testimonials_button_logo, #pearls_button_logo {
+  /* height: 100px; */
+  /* width: 100px; */
+  /* min-width: 100%;
+  min-height: 150px; */
+  width: 100%;
+  max-height: 48vh;
+  min-height: 48vh;
+}
+
+.menu_is_open #prayer_rooms_button_logo, 
+.menu_is_open #intentions_button_logo,
+.menu_is_open #testimonials_button_logo, 
+.menu_is_open #pearls_button_logo {
+  max-height: 18vh;
+  min-height: 18vh;
+}
+
+.menu_is_open #main_menu_button_logo {
+  height: 80px;
+  width: 80px;
+}
+
+.menu_is_open .menu-container {
+  min-height: 20vh;
+  max-height: 20vh;
+}
+
+#menus_container {
+
+  /* position: fixed; */
+  /* opacity: 0; */
+  /* transform: scale(0); */
+  width: 100%;
+  height: 82vh;
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  background-color: white;
+  z-index: 11;
+  cursor: pointer;
+  overflow: auto;
+
+}
+
+/* #menus_container.menu_is_open {
+  display: flex;
+  flex-direction: row;
+} */
+
+
+
+#menu_buttons_top_row,
+#menu_buttons_bottom_row {
+  display: flex;
+  flex-direction: row;
+}
+
+#menu_buttons_top_row.menu_is_open,
+#menu_buttons_bottom_row.menu_is_open {
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_buttons_container {
+  /* display: grid;
+  grid-template-columns: 34% 33% 33%; */
+}
+
+#menu_buttons_container.menu_is_open {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  width: 15%;
+  overflow: auto;
+  height: 100vh;
+}
+
+#menu_buttons_container_top_bar {
+  display: flex;
+  /* height: 100px; */
+  position: relative;
+  transition: 0.6s ease, .6s ease opacity, .6s ease transform;
+  /* background-color: rgba(147, 112, 216, 0.8); */
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 100;
+  height: 18vh;
+}
+
+#menu_buttons_container_top_bar img {
+  min-height: unset;
+  max-height: unset;
+}
+
+#menu_buttons_container_top_bar .menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  min-width: unset;
+  min-height: unset;
+  /* height: unset !important; */
+  width: 20vw !important;
+  box-shadow:  4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0px;
+}
+
+#menu_buttons_container_top_bar #prayer_rooms_button_logo,
+#menu_buttons_container_top_bar #intentions_button_logo,
+#menu_buttons_container_top_bar #testimonials_button_logo,
+#menu_buttons_container_top_bar #pearls_button_logo {
+  /* width: 75%; */
+  height: 20vh;
+}
+#menu_buttons_container_top_bar #main_menu_button_logo {
+  height: 75px;
+  width: 75px;
+}
+
+#main_menu_button {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#username_in_menu_logo {
+  overflow-wrap: anywhere;
+  color: purple;
+}
+
+#menu_buttons_top_row #username_in_menu_logo {
+  color: purple;
+  font-size: 13px;
+}
+
+.sidenav .close_menus_window_button {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  font-size: 36px;
+  z-index: 2;
+  /* color: #00F7FF; */
+  color: black;
+  margin-top: -10px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: 0.5s ease;
+  border-radius: 5px;
+  display: none;
+}
+
+.sidenav .close_menus_window_button:hover {
+  background-color: rgba(147, 112, 216, 0.8);
+}
+
+#intentionsSideNav, #intentions_menu {
+    background-color: antiquewhite;
+}
+
+#intentionsMenuList .prayer_room_row {
+  background-color: aliceblue;
+  border-color: gray;
+}
+
+#intentions_menu_divider {
+  border-color: aliceblue;
+}
+
+
+#testimonialsSideNav, #testimonials_menu {
+  background-color: bisque;
+}
+
+#testimonialsMenuList .prayer_room_row {
+  background-color: burlywood;
+  border-color: thistle;
+}
+
+#testimonials_menu_divider {
+  border-color: burlywood;
+}
+
+
+#pearlsSideNav, #pearls_menu {
+  background-color: cornflowerblue;
+}
+
+#pearlsMenuList .prayer_room_row {
+  background-color: blanchedalmond;
+  border-color: azure;
+  margin: 0 20px;
+}
+
+#pearls_menu_divider {
+  border-color: blanchedalmond;
+}
+
+
+#myPrayerRoomsSideNav, #prayer_rooms_menu {
+  background-color: thistle;
+}
+
+#myRoomsMenuList .prayer_room_row {
+  background-color: white;
+  border-color: purple;
+}
+
+#prayer_rooms_menu_divider {
+  border-color: white;
+}
+
+
+#prayer_rooms_menu_divider, #pearls_menu_divider, 
+#testimonials_menu_divider, #intentions_menu_divider {
+  display: none;
+}
+
+
+#main_menu_container, #pearls_menu, #prayer_rooms_menu, #intentions_menu,
+#testimonials_menu {
+  cursor: pointer;
+}
+
+#main_menu_container:hover, #pearls_menu:hover, #prayer_rooms_menu:hover,
+#intentions_menu:hover, #testimonials_menu:hover {
+  background-color: rgba(147, 112, 216, 0.8);
+}
+
+.reacts_container {
+  display: flex;
+  place-self: center;
+}
+
+.emoji_container {
+  display: flex;
+  padding: 0 5px;
+}
+
+.emoji {
+  margin-right: 3px;
+  color: red;
+}
+
+.user_reacted {
+  color: purple;
+  border: 1px solid;
+  border-radius: 5px;
+  background: rgba(53, 74, 90, 0.1);
+}
+
+
+.tox.tox-tinymce.tox-platform-touch {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+input[type="text"] {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.sort_by_category {
+  display: inline-block;
+}
+
+@font-face {
+  font-family: 'Varela Round';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/varelaround/v13/w8gdH283Tvk__Lua32TysjIfp8uK.ttf) format('truetype');
+}
+* {
+  box-sizing: border-box;
+}
+:root {
+  --accent-color: #45494E;
+  --gradient-color: #FBFBFB;
+}
+a:focus {
+  outline: none;
+  position: relative;
+}
+a:focus:after {
+  width: 50px;
+}
+a:after {
+  content: "";
+  background: #FBFBFB;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  height: 3px;
+  width: 0;
+  transition: 0.5s;
+  transition-delay: 0.2s;
+}
+body {
+  background: #45494E;
+  font-family: "Varela Round", Nunito, Montserrat, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* text-transform: capitalize; */
+}
+.menu {
+  margin: 15px;
+}
+.menu > ol {
+  list-style: none;
+  margin: 30px 0;
+  padding: 0;
+}
+.menu > ol > li {
+  background: #3c3c3c;
+  border-left: 5px solid var(--gradient-color);
+  margin-bottom: 1px;
+  position: relative;
+  transition: 0.5s;
+}
+.menu > ol > li:nth-child(1) {
+  --accent-color: #6f00ff;
+  --gradient-color: #b47ee6;
+}
+.menu > ol > li:nth-child(2) {
+  --accent-color: #BFF098;
+  --gradient-color: #6FD6FF;
+}
+.menu > ol > li:nth-child(3) {
+  --accent-color: #EA8D8D;
+  --gradient-color: #A890FE;
+}
+.menu > ol > li:nth-child(4) {
+  --accent-color: #D8B5FF;
+  --gradient-color: #1EAE98;
+}
+.menu > ol > li:nth-child(5) {
+  --accent-color: #C6EA8D;
+  --gradient-color: #FE90AF;
+}
+.menu > ol > li a {
+  color: #FBFBFB;
+  display: block;
+  padding: 15px;
+  position: relative;
+  text-decoration: none;
+  z-index: 1;
+}
+.menu > ol > li a:not(:last-child):before {
+  content: "\f078";
+  font-family: fontAwesome;
+  font-size: 0.75em;
+  line-height: 50px;
+  position: absolute;
+  right: 25px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.5s;
+}
+.menu > ol > li:focus,
+.menu > ol > li:focus-within,
+.menu > ol > li:hover {
+  z-index: 100;
+}
+.menu > ol > li:focus:after,
+.menu > ol > li:focus-within:after,
+.menu > ol > li:hover:after {
+  background: linear-gradient(to left, var(--accent-color), var(--gradient-color));
+  /* max-width: 800px; */
+}
+.menu > ol > li:focus .sub-menu,
+.menu > ol > li:focus-within .sub-menu {
+  max-height: 500px;
+}
+.menu > ol > li:focus a:before,
+.menu > ol > li:focus-within a:before {
+  transform: rotate(-180deg);
+}
+.menu > ol > li:after {
+  background: #3c3c3c;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: 0.5s;
+  /* max-width: 0; */
+  overflow: hidden;
+}
+.menu > ol .sub-menu {
+  border-left: 1px solid #FBFBFB;
+  margin-left: 22.5px;
+  list-style: none;
+  max-height: 0px;
+  /* overflow: hidden; */
+  padding-left: 15px/2;
+  position: relative;
+  transition: 0.5s;
+  z-index: 1;
+}
+.menu > ol .sub-menu li {
+  font-size: 0.9em;
+}
+.menu > ol .sub-menu li:hover,
+.menu > ol .sub-menu li a:focus {
+  background: rgba(60, 60, 60, 0.3);
+}
+.menu > ol .sub-menu li a:after {
+  bottom: 5px;
+  height: 1px;
+}
+.menu > ol .sub-menu li a:hover:after,
+.menu > ol .sub-menu li a:focus:after {
+  width: 15px;
+}
+@media (min-width: 600px) {
+  a:focus,
+  a:hover {
+    position: relative;
+  }
+  a:focus:after,
+  a:hover:after {
+    /* line below <a> tags when hovering over them */
+    /* width: 50px; */
+  }
+  a:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .menu {
+    margin: 0;
+    /* margin-top: 40vh; */
+  }
+  .menu > ol {
+    display: block;
+    max-width: none;
+    text-align: center;
+  }
+  .menu > ol > li {
+    border-top: 5px solid var(--accent-color);
+    border-left: 0;
+    display: inline-block;
+    margin-left: -5px;
+    vertical-align: top;
+    width: 120px;
+  }
+  .menu > ol > li:hover:after,
+  .menu > ol > li:focus:after,
+  .menu > ol > li:focus-within:after {
+    background: linear-gradient(to bottom, var(--accent-color), var(--gradient-color));
+    border-radius: 3px;
+    top: -15px;
+    bottom: -15px;
+    left: -15px;
+    right: -15px;
+  }
+  .menu > ol > li:hover .sub-menu,
+  .menu > ol > li:focus .sub-menu,
+  .menu > ol > li:focus-within .sub-menu {
+    max-height: 750px;
+  }
+  .menu > ol > li a:not(:last-child):before {
+    right: 12.5px;
+  }
+  .menu > ol > li:hover a:before {
+    transform: rotate(-180deg);
+  }
+  .menu > ol .sub-menu {
+    border-left: 0;
+    margin: 15px -15px -15px;
+    padding-left: 0;
+  }
+}
+@media (min-width: 775px) {
+  .menu > ol > li {
+    width: 150px;
+  }
+  .menu > ol > li a:not(:last-child):before {
+    right: 25px;
+  }
+}
+
+.sort_entries_choice {
+    margin: 0;
+    padding: 0;
+    width: -webkit-fill-available;
+    align-self: center;
+    height: 100px;
+}
+
+.sort_entries_sub_menu {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.sort_entries_menu_2 {
+  width: 90% !important;
+  max-width: 90% !important;
+  margin: 0;
+  padding: 0;
+}
+
+.reply_container {
+  height: 300px;
+  overflow: auto;
+}

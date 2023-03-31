@@ -1,5 +1,9 @@
 import $ from 'jquery';
 
+global.websiteFullURL = 'https://worldwideprayer.world/'
+// global.currentlyWorkingURL = global.websiteFullURL
+global.currentlyWorkingURL = 'http://localhost:3000/'
+global.tempWebsiteFullURL = 'https://test.worldwideprayer.world/react_files/'
 
 global.isUserLoggedIn = undefined;
 // variable to know if user just entered website or is instead clicking between pages (useful because we only want to load user data once when they first start their time on the site instead of every time they go to a page)
@@ -777,9 +781,9 @@ if (!document.getElementById(cssId)) // only load the css file if it was not loa
     link.rel = 'stylesheet';
     link.type = 'text/css';
     if (!global.isMobile) {
-        link.href = 'css/global-styles.css?version=' + Date.now(); // make sure the CSS path is absolute so it is loaded from your servers
+        link.href = global.tempWebsiteFullURL + 'css/global-styles.css?version=' + Date.now(); // make sure the CSS path is absolute so it is loaded from your servers
     } else {
-        link.href = 'css/global-styles-mobile.css?version=' + Date.now();
+        link.href = global.tempWebsiteFullURL + 'css/global-styles-mobile.css?version=' + Date.now();
         // link.href = 'css/global-styles.css?version=' + Date.now();
     }
     link.media = 'all';
@@ -821,34 +825,34 @@ if (!document.getElementById(cssId)) // only load the css file if it was not loa
     head.appendChild(link);
 }
 
-var scriptId = 'globalFunctionsJS';
-if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
-{
-    var scriptSrc = "js/global-functions.js?version=" + Date.now();
-    // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
-    console.log("scriptSrc: " + scriptSrc);
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.id = scriptId;
-    script.type = 'text/javascript';
-    script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
-    head.appendChild(script);
-}
+// var scriptId = 'globalFunctionsJS';
+// if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
+// {
+//     var scriptSrc = "js/global-functions.js?version=" + Date.now();
+//     // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
+//     console.log("scriptSrc: " + scriptSrc);
+//     var head = document.getElementsByTagName('head')[0];
+//     var script = document.createElement('script');
+//     script.id = scriptId;
+//     script.type = 'text/javascript';
+//     script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
+//     head.appendChild(script);
+// }
 
-scriptId = 'markJS';
-if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
-{
-    var scriptSrc = "dist/mark.min.js?version=" + Date.now();
-    // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
-    console.log("scriptSrc: " + scriptSrc);
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.id = scriptId;
-    script.type = 'text/javascript';
-    script.charset = 'UTF-8';
-    script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
-    head.appendChild(script);
-}
+// scriptId = 'markJS';
+// if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
+// {
+//     var scriptSrc = "dist/mark.min.js?version=" + Date.now();
+//     // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
+//     console.log("scriptSrc: " + scriptSrc);
+//     var head = document.getElementsByTagName('head')[0];
+//     var script = document.createElement('script');
+//     script.id = scriptId;
+//     script.type = 'text/javascript';
+//     script.charset = 'UTF-8';
+//     script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
+//     head.appendChild(script);
+// }
 
 // scriptId = 'lessJS';
 // if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already

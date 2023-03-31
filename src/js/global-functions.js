@@ -42,14 +42,9 @@ var timeAtNextPrayer;// = new Date().getTime() + shortestTimeTillPrayer;
 var nextPrayerNum;
 // var email, profile_pic_ref;
 var userDataRetrieved = false;
-var snackbarMessage;
 // let prayerMenuToggleButtonBackgroundColor = 'rgb(77, 39, 115);';
 let prayerMenuToggleButtonBackgroundColor = 'mediumpurple';
 
-
-if (document.getElementById("snackbar")) {
-    snackbarMessage = document.getElementById("snackbar");
-}
 
 function countdownTimerFunction() {
 
@@ -556,9 +551,9 @@ function sort_entries(e, sortEntriesBy) {
 
 
             } else if (response.includes('Entries not retrieved for some reason.')) {
-                snackbarMessage.innerHTML = "Sorry, an error occurred. Please try again later, or email us at support@worldwideprayer.world.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Sorry, an error occurred. Please try again later, or email us at support@worldwideprayer.world.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -712,17 +707,17 @@ function reportEntryFunction(e, thingReported) {
 
                     e.style.display = 'none';
 
-                    snackbarMessage.innerHTML = "The " + thingReported + " has been reported and will be reviewed.";
+                    global.snackbarMessage.innerHTML = "The " + thingReported + " has been reported and will be reviewed.";
                     if (thingReported == 'pearls') {
-                        snackbarMessage.innerHTML = "The " + thingReported + " have been reported and will be reviewed.";
+                        global.snackbarMessage.innerHTML = "The " + thingReported + " have been reported and will be reviewed.";
                     }
-                    snackbarMessage.className = "show";
-                    setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                    global.snackbarMessage.className = "show";
+                    setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 } else if (response.includes('Entry not reported for some reason.')) {
-                    snackbarMessage.innerHTML = "Sorry, the " + thingReported + " could not be reported. Please try again later, or email us at reports@worldwideprayer.world.";
-                    snackbarMessage.className = "show";
-                    setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                    global.snackbarMessage.innerHTML = "Sorry, the " + thingReported + " could not be reported. Please try again later, or email us at reports@worldwideprayer.world.";
+                    global.snackbarMessage.className = "show";
+                    setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
                 }
 
             },
@@ -732,9 +727,9 @@ function reportEntryFunction(e, thingReported) {
         });
 
     } else {
-        snackbarMessage.innerHTML = "Disabling reporting for 10 seconds so we don't get spammed.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Disabling reporting for 10 seconds so we don't get spammed.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
     }
 
     return false;
@@ -818,9 +813,9 @@ function displayReacts(reactsContainer, reactsArrays, rowCounter, thingReactingT
 function giveReactionFunction(e, thingReactingTo) {
 
     if (!global.isUserLoggedIn) {
-        snackbarMessage.innerHTML = "Please login first.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Please login first.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
@@ -1004,7 +999,7 @@ function giveReactionFunction(e, thingReactingTo) {
     form_data.append("action", 'giveReaction');
 
     $.ajax({
-        url: "create_intention_functions.php",
+        url: global.websiteFullURL + "create_intention_functions.php",
         cache: false,
         contentType: false,
         processData: false,
@@ -1053,9 +1048,9 @@ function giveReactionFunction(e, thingReactingTo) {
 
 
             } else if (response.includes('Reaction not successful for some reason.')) {
-                snackbarMessage.innerHTML = "Sorry an error occurred.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Sorry an error occurred.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -1123,9 +1118,9 @@ function deleteEntryFunction(e, thingDeleted) {
             console.log(response);
 
             if (response.includes('Entry successfully deleted.')) {
-                snackbarMessage.innerHTML = "Entry successfully deleted.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Entry successfully deleted.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 entry_id = entry_id.toString();
 
@@ -1194,9 +1189,9 @@ function deleteEntryFunction(e, thingDeleted) {
 
 
             } else if (response.includes('Entry not deleted for some reason.')) {
-                snackbarMessage.innerHTML = "Entry not deleted for some reason.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Entry not deleted for some reason.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -2012,9 +2007,9 @@ function loadUsersList(usersSearchInput, limit) {
 
 
             if (response['error'] == true) {
-                snackbarMessage.innerHTML = "An error occurred. Sorry, we could not get any users.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "An error occurred. Sorry, we could not get any users.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             } else if (response['error'] == false) {
 
                 if (window.location.href.includes('/my_profile.php') || window.location.href.includes('/user/')) {
@@ -2023,9 +2018,9 @@ function loadUsersList(usersSearchInput, limit) {
                 }
             } else {
                 // could just be that the search input didn't return any users
-                // snackbarMessage.innerHTML = "An error occurred. Sorry, we could not get any users.";
-                // snackbarMessage.className = "show";
-                // setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                // global.snackbarMessage.innerHTML = "An error occurred. Sorry, we could not get any users.";
+                // global.snackbarMessage.className = "show";
+                // setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -2099,7 +2094,7 @@ function addUsersToList() {
 
         // var followUser = document.createElement("img");
         // followUser.className = "room_row_savebtn";
-        // followUser.src = "images/save_icon_purple.png";
+        // followUser.src = require("../images/save_icon_purple.png");
         // followUser.onclick = followUserFunction;
         // optionsContainer.appendChild(followUser);
 
@@ -2112,7 +2107,7 @@ function addUsersToList() {
         if (global.username != global.usersUsernameList[numRow]) {
             var reportUser = document.createElement("img")
             reportUser.className = "room_row_reportbtn";
-            reportUser.src = "images/report_icon_purple.png";
+            reportUser.src = require("../images/report_icon_purple.png");
             reportUser.onclick = function () {
                 reportEntryFunction(this, 'user')
             };
@@ -2371,9 +2366,9 @@ function goToPrayerRoomFunction(e) {
 function savePrayerRoomFunction(e) {
 
     if (!global.username || !global.isUserLoggedIn) { // if the prayer room has already been saved by the user, don't show the option to save it
-        snackbarMessage.innerHTML = "Login to save prayer rooms!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Login to save prayer rooms!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
         return;
     }
 
@@ -2395,19 +2390,19 @@ function savePrayerRoomFunction(e) {
             console.log("response:", response);// response.responseText);
 
             if (response.includes('Prayer room not saved for some reason.')) {
-                snackbarMessage.innerHTML = "An error occurred. Sorry, the prayer room was not saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "An error occurred. Sorry, the prayer room was not saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             } else if (response.includes('Prayer room successfully saved!')) {
-                snackbarMessage.innerHTML = "Prayer room saved!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Prayer room saved!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#myPrayerRoomsSideNav .room_row_savebtn')[numRow].style.display = 'none';
             } else if (response.includes('Prayer room already saved for this user.')) {
-                snackbarMessage.innerHTML = "Prayer room has already been saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Prayer room has already been saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#myPrayerRoomsSideNav .room_row_savebtn')[numRow].style.display = 'none';
             }
@@ -2773,7 +2768,7 @@ function loadPrayerRoomsList(action, query, limit, prayerRoomsSearchInput, order
 
                             var savePrayerRoom = document.createElement("img");
                             savePrayerRoom.className = "room_row_savebtn";
-                            savePrayerRoom.src = "images/save_icon_purple.png";
+                            savePrayerRoom.src = require("../images/save_icon_purple.png");
                             savePrayerRoom.onclick = savePrayerRoomFunction;
                             global.savePrayerRoomButtons.push(savePrayerRoom);
                             optionsContainer.appendChild(savePrayerRoom);
@@ -2786,13 +2781,13 @@ function loadPrayerRoomsList(action, query, limit, prayerRoomsSearchInput, order
                             if (global.username == global.usernameList[roomCounter]) {
                                 var editPrayerRoom = document.createElement("img");
                                 editPrayerRoom.className = "room_row_editbtn";
-                                editPrayerRoom.src = "images/edit_icon_purple.png";
+                                editPrayerRoom.src = require("../images/edit_icon_purple.png");
                                 editPrayerRoom.onclick = editPrayerRoomFunction;
                                 optionsContainer.appendChild(editPrayerRoom);
 
                                 var deletePrayerRoom = document.createElement("img")
                                 deletePrayerRoom.className = "room_row_deletebtn";
-                                deletePrayerRoom.src = "images/delete_icon_purple.png";
+                                deletePrayerRoom.src = require("../images/delete_icon_purple.png");
                                 deletePrayerRoom.onclick = function () {
                                     deleteEntryFunction(this, 'prayer room')
                                 };
@@ -2803,7 +2798,7 @@ function loadPrayerRoomsList(action, query, limit, prayerRoomsSearchInput, order
                             if (global.username != global.usernameList[roomCounter]) {
                                 var reportPrayerRoom = document.createElement("img")
                                 reportPrayerRoom.className = "room_row_reportbtn";
-                                reportPrayerRoom.src = "images/report_icon_purple.png";
+                                reportPrayerRoom.src = require("../images/report_icon_purple.png");
                                 reportPrayerRoom.onclick = function () {
                                     reportEntryFunction(this, 'prayer room')
                                 };
@@ -2841,9 +2836,9 @@ function loadPrayerRoomsList(action, query, limit, prayerRoomsSearchInput, order
                     },
                     error: function (error) {
                         console.log("There was an error getting the prayer rooms: ", error);
-                        snackbarMessage.innerHTML = "There was an error getting the prayer rooms: " + error;
-                        snackbarMessage.className = "show";
-                        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                        global.snackbarMessage.innerHTML = "There was an error getting the prayer rooms: " + error;
+                        global.snackbarMessage.className = "show";
+                        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
                     }
                 });
 
@@ -3420,9 +3415,9 @@ function goToIntentionFunction(e) {
 function saveIntentionFunction(e) {
 
     if (!global.username || !global.isUserLoggedIn) { // if the prayer room has already been saved by the user, don't show the option to save it
-        snackbarMessage.innerHTML = "Login to save intentions!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Login to save intentions!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
         return;
     }
 
@@ -3434,7 +3429,7 @@ function saveIntentionFunction(e) {
 
     $.ajax({
         type: "POST",
-        url: "create_intention_functions.php",
+        url: global.websiteFullURL + "create_intention_functions.php",
         data: {
             action: 'saveIntention',
             username: global.username,
@@ -3444,20 +3439,20 @@ function saveIntentionFunction(e) {
             console.log("response:", response);// response.responseText);
 
             if (response.includes('Intention not saved for some reason.')) {
-                snackbarMessage.innerHTML = "An error occurred. Sorry, the intention was not saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "An error occurred. Sorry, the intention was not saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             } else if (response.includes('Intention successfully saved!')) {
-                snackbarMessage.innerHTML = "Intention saved!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Intention saved!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#intentionsSideNav .room_row_savebtn')[numRow].style.display = 'none';
 
             } else if (response.includes('Intention already saved for this user.')) {
-                snackbarMessage.innerHTML = "Intention has already been saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Intention has already been saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#intentionsSideNav .room_row_savebtn')[numRow].style.display = 'none';
             }
@@ -3477,7 +3472,7 @@ function editIntentionFunction(e) {
 }
 
 function loadIntentionsList(action, query, limit, intentionsSearchInput, orderBy, sortBy, category) {
-    var php_url = 'create_intention_functions.php';
+    var php_url = global.websiteFullURL + 'create_intention_functions.php';
     console.log('sortBy', sortBy);
     if (sortBy) {
         php_url = 'create_prayer_room_functions.php';
@@ -3526,7 +3521,7 @@ function loadIntentionsList(action, query, limit, intentionsSearchInput, orderBy
 
         $.ajax({
             type: "POST",
-            url: 'create_intention_functions.php',
+            url: global.websiteFullURL + 'create_intention_functions.php',
             data: {
                 action: 'getSavedIntentionsByUsername',
                 username: global.username
@@ -3622,9 +3617,9 @@ function loadIntentionsList(action, query, limit, intentionsSearchInput, orderBy
                     },
                     error: function (error) {
                         console.log("There was an error getting the intentions: ", error);
-                        snackbarMessage.innerHTML = "There was an error getting the intentions: " + error;
-                        snackbarMessage.className = "show";
-                        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                        global.snackbarMessage.innerHTML = "There was an error getting the intentions: " + error;
+                        global.snackbarMessage.className = "show";
+                        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
                     }
                 });
 
@@ -3650,7 +3645,7 @@ function addIntentionToList(addToTop = false) {
     var roomCounterTemp = 0;
 
     var intentionRow = document.createElement("a");
-    intentionRow.className = "btn btn-info menu-list-item prayer_room_row";
+    intentionRow.className = "btn btn-info menu-list-item entry_row";
 
     if (addToTop) {
         document.getElementById("intentionsMenuList").insertBefore(intentionRow, document.getElementById("intentionsMenuList").firstChild);
@@ -3784,7 +3779,7 @@ function addIntentionToList(addToTop = false) {
 
     var saveIntention = document.createElement("img");
     saveIntention.className = "room_row_savebtn";
-    saveIntention.src = "images/save_icon_purple.png";
+    saveIntention.src = require("../images/save_icon_purple.png");
     saveIntention.onclick = saveIntentionFunction;
     optionsContainer.appendChild(saveIntention);
 
@@ -3798,13 +3793,13 @@ function addIntentionToList(addToTop = false) {
     if (global.username1 == global.intentionsUsernameList[roomCounterTemp]) {
         // var editIntention = document.createElement("img");
         // editIntention.className = "room_row_editbtn";
-        // editIntention.src = "images/edit_icon_purple.png";
+        // editIntention.src = require("../images/edit_icon_purple.png");
         // editIntention.onclick = editIntentionFunction;
         // optionsContainer.appendChild(editIntention);
 
         var deleteIntention = document.createElement("img")
         deleteIntention.className = "room_row_deletebtn";
-        deleteIntention.src = "images/delete_icon_purple.png";
+        deleteIntention.src = require("../images/delete_icon_purple.png");
         deleteIntention.onclick = function () {
             deleteEntryFunction(this, 'intention')
         };
@@ -3816,7 +3811,7 @@ function addIntentionToList(addToTop = false) {
     if (global.username1 != global.intentionsUsernameList[roomCounterTemp]) {
         var reportIntention = document.createElement("img")
         reportIntention.className = "room_row_reportbtn";
-        reportIntention.src = "images/report_icon_purple.png";
+        reportIntention.src = require("../images/report_icon_purple.png");
         reportIntention.onclick = function () {
             reportEntryFunction(this, 'intention')
         };
@@ -3830,26 +3825,26 @@ export function postIntention() {
 
     if (!localStorage.getItem('isUserLoggedIn')) {
 
-        snackbarMessage.innerHTML = "Please login to post an intention!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Please login to post an intention!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
 
     if (!document.getElementById("intention_title_input").value) {
-        snackbarMessage.innerHTML = "The title for the intention cannot be empty.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "The title for the intention cannot be empty.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
 
     if (document.getElementById("intention_title_input").value.includes(',') || document.getElementById("intention_title_input").value.includes('[') ||
         document.getElementById("intention_title_input").value.includes(']') || document.getElementById("intention_title_input").value.includes(':')) {
-        snackbarMessage.innerHTML = "The title for the intention cannot contain ',', '[', ']', or ':'.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "The title for the intention cannot contain ',', '[', ']', or ':'.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
@@ -3874,7 +3869,7 @@ export function postIntention() {
     form_data.append("action", 'createIntention')
 
     $.ajax({
-        url: "create_intention_functions.php",
+        url: global.websiteFullURL + "create_intention_functions.php",
         cache: false,
         contentType: false,
         processData: false,
@@ -3886,9 +3881,9 @@ export function postIntention() {
             console.log(response);
 
             if (response.includes('Intention successfully saved!')) {
-                snackbarMessage.innerHTML = "Intention successfully offered up!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Intention successfully offered up!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 response = response.replace("Intention successfully saved!", '');
 
@@ -3911,9 +3906,9 @@ export function postIntention() {
 
 
             } else if (response.includes('Intention not saved for some reason.')) {
-                snackbarMessage.innerHTML = "Intention not saved for some reason.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Intention not saved for some reason.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -4099,9 +4094,9 @@ function goToTestimonialFunction(e) {
 function saveTestimonialFunction(e) {
 
     if (!global.username || !global.isUserLoggedIn) { // if the prayer room has already been saved by the user, don't show the option to save it
-        snackbarMessage.innerHTML = "Login to save testimonials!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Login to save testimonials!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
         return;
     }
 
@@ -4123,20 +4118,20 @@ function saveTestimonialFunction(e) {
             console.log("response:", response);// response.responseText);
 
             if (response.includes('Testimonial not saved for some reason.')) {
-                snackbarMessage.innerHTML = "An error occurred. Sorry, the testimonial was not saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "An error occurred. Sorry, the testimonial was not saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             } else if (response.includes('Testimonial successfully saved!')) {
-                snackbarMessage.innerHTML = "Testimonial saved!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Testimonial saved!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#testimonialsSideNav .room_row_savebtn')[numRow].style.display = 'none';
 
             } else if (response.includes('Testimonial already saved for this user.')) {
-                snackbarMessage.innerHTML = "Testimonial has already been saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Testimonial has already been saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#testimonialsSideNav .room_row_savebtn')[numRow].style.display = 'none';
             }
@@ -4300,9 +4295,9 @@ function loadTestimonialsList(action, query, limit, testimonialsSearchInput, ord
                     },
                     error: function (error) {
                         console.log("There was an error getting the testimonials: ", error);
-                        snackbarMessage.innerHTML = "There was an error getting the testimonials: " + error;
-                        snackbarMessage.className = "show";
-                        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                        global.snackbarMessage.innerHTML = "There was an error getting the testimonials: " + error;
+                        global.snackbarMessage.className = "show";
+                        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
                     }
                 });
 
@@ -4451,7 +4446,7 @@ function addTestimonialToList(addToTop = false) {
 
     var saveTestimonial = document.createElement("img");
     saveTestimonial.className = "room_row_savebtn";
-    saveTestimonial.src = "images/save_icon_purple.png";
+    saveTestimonial.src = require("../images/save_icon_purple.png");
     saveTestimonial.onclick = saveTestimonialFunction;
     optionsContainer.appendChild(saveTestimonial);
 
@@ -4464,13 +4459,13 @@ function addTestimonialToList(addToTop = false) {
     if (global.username == global.testimonialsUsernameList[roomCounterTemp]) {
         // var editTestimonial = document.createElement("img");
         // editTestimonial.className = "room_row_editbtn";
-        // editTestimonial.src = "images/edit_icon_purple.png";
+        // editTestimonial.src = require("../images/edit_icon_purple.png");
         // editTestimonial.onclick = editTestimonialFunction;
         // optionsContainer.appendChild(editTestimonial);
 
         var deleteTestimonial = document.createElement("img");
         deleteTestimonial.className = "room_row_deletebtn";
-        deleteTestimonial.src = "images/delete_icon_purple.png";
+        deleteTestimonial.src = require("../images/delete_icon_purple.png");
         deleteTestimonial.onclick = function () {
             deleteEntryFunction(this, 'testimonial')
         };
@@ -4481,7 +4476,7 @@ function addTestimonialToList(addToTop = false) {
     if (global.username != global.testimonialsUsernameList[roomCounterTemp]) {
         var reportTestimonial = document.createElement("img")
         reportTestimonial.className = "room_row_reportbtn";
-        reportTestimonial.src = "images/report_icon_purple.png";
+        reportTestimonial.src = require("../images/report_icon_purple.png");
         reportTestimonial.onclick = function () {
             reportEntryFunction(this, 'testimonial')
         };
@@ -4495,26 +4490,26 @@ function postTestimonial() {
 
     if (!localStorage.getItem('isUserLoggedIn')) {
 
-        snackbarMessage.innerHTML = "Please login to post a testimonial!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Please login to post a testimonial!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
 
     if (!document.getElementById("testimonial_title_input").value) {
-        snackbarMessage.innerHTML = "The title for the testimonial cannot be empty.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "The title for the testimonial cannot be empty.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
 
     if (document.getElementById("testimonial_title_input").value.includes(',') || document.getElementById("testimonial_title_input").value.includes('[') ||
         document.getElementById("testimonial_title_input").value.includes(']') || document.getElementById("testimonial_title_input").value.includes(':')) {
-        snackbarMessage.innerHTML = "The title for the testimonial cannot contain ',', '[', ']', or ':'.";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "The title for the testimonial cannot contain ',', '[', ']', or ':'.";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
         return;
     }
@@ -4551,9 +4546,9 @@ function postTestimonial() {
             console.log(response);
 
             if (response.includes('Testimonial successfully saved!')) {
-                snackbarMessage.innerHTML = "Testimonial successfully offered up!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Testimonial successfully offered up!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 response = response.replace("Testimonial successfully saved!", '');
 
@@ -4576,9 +4571,9 @@ function postTestimonial() {
 
 
             } else if (response.includes('Testimonial not saved for some reason.')) {
-                snackbarMessage.innerHTML = "Testimonial not saved for some reason.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Testimonial not saved for some reason.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             }
 
         },
@@ -4777,9 +4772,9 @@ function goToPearlsFunction(e) {
 function savePearlsFunction(e) {
 
     if (!global.username || !global.isUserLoggedIn) { // if the prayer room has already been saved by the user, don't show the option to save it
-        snackbarMessage.innerHTML = "Login to save pearls!";
-        snackbarMessage.className = "show";
-        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+        global.snackbarMessage.innerHTML = "Login to save pearls!";
+        global.snackbarMessage.className = "show";
+        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
         return;
     }
 
@@ -4801,20 +4796,20 @@ function savePearlsFunction(e) {
             console.log("response:", response);// response.responseText);
 
             if (response.includes('Pearls not saved for some reason.')) {
-                snackbarMessage.innerHTML = "An error occurred. Sorry, the pearls were not saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "An error occurred. Sorry, the pearls were not saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             } else if (response.includes('Pearls successfully saved!')) {
-                snackbarMessage.innerHTML = "Pearls saved!";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Pearls saved!";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#pearlsSideNav .room_row_savebtn')[numRow].style.display = 'none';
 
             } else if (response.includes('Pearls already saved for this user.')) {
-                snackbarMessage.innerHTML = "Pearls have already been saved.";
-                snackbarMessage.className = "show";
-                setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                global.snackbarMessage.innerHTML = "Pearls have already been saved.";
+                global.snackbarMessage.className = "show";
+                setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
                 $('#pearlsSideNav .room_row_savebtn')[numRow].style.display = 'none';
             }
@@ -5004,9 +4999,9 @@ function loadPearlsList(action, query, limit, pearlsSearchInput, orderBy, sortBy
                     },
                     error: function (error) {
                         console.log("There was an error getting the pearls: ", error);
-                        snackbarMessage.innerHTML = "There was an error getting the pearls: " + error;
-                        snackbarMessage.className = "show";
-                        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+                        global.snackbarMessage.innerHTML = "There was an error getting the pearls: " + error;
+                        global.snackbarMessage.className = "show";
+                        setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
                     }
                 });
 
@@ -5152,7 +5147,7 @@ function addPearlsToList(addToTop = false) {
 
     var savePearls = document.createElement("img");
     savePearls.className = "room_row_savebtn";
-    savePearls.src = "images/save_icon_purple.png";
+    savePearls.src = require("../images/save_icon_purple.png");
     savePearls.onclick = savePearlsFunction;
     optionsContainer.appendChild(savePearls);
 
@@ -5165,13 +5160,13 @@ function addPearlsToList(addToTop = false) {
     if (global.username == global.pearlsUsernameList[roomCounterTemp]) {
         var editPearls = document.createElement("img");
         editPearls.className = "room_row_editbtn";
-        editPearls.src = "images/edit_icon_purple.png";
+        editPearls.src = require("../images/edit_icon_purple.png");
         editPearls.onclick = editPearlsFunction;
         optionsContainer.appendChild(editPearls);
 
         var deletePearls = document.createElement("img");
         deletePearls.className = "room_row_deletebtn";
-        deletePearls.src = "images/delete_icon_purple.png";
+        deletePearls.src = require("../images/delete_icon_purple.png");
         deletePearls.onclick = function () {
             deleteEntryFunction(this, 'pearls')
         };
@@ -5182,7 +5177,7 @@ function addPearlsToList(addToTop = false) {
     if (global.username != global.pearlsUsernameList[roomCounterTemp]) {
         var reportPearls = document.createElement("img")
         reportPearls.className = "room_row_reportbtn";
-        reportPearls.src = "images/report_icon_purple.png";
+        reportPearls.src = require("../images/report_icon_purple.png");
         reportPearls.onclick = function () {
             reportEntryFunction(this, 'pearls')
         };
@@ -5816,20 +5811,20 @@ $(document).ready(function () {
 
         });
 
-        document.getElementById("intentions_menu_close_button").addEventListener("click", function (e) {
-            document.getElementById("intentionsSideNav").style.width = "0";
-            intentionsMenuClicked = false;
-            e.stopPropagation();
-            e.cancelBubble = true;
+        // document.getElementById("intentions_menu_close_button").addEventListener("click", function (e) {
+        //     document.getElementById("intentionsSideNav").style.width = "0";
+        //     intentionsMenuClicked = false;
+        //     e.stopPropagation();
+        //     e.cancelBubble = true;
 
-            if (global.openSideNavs.includes('INTENTIONS')) {
-                global.openSideNavs.splice(global.openSideNavs.indexOf('INTENTIONS'), 1);
-                global.openSideNavElements.splice(global.openSideNavElements.indexOf(document.getElementById('intentionsSideNav')), 1);
-            }
+        //     if (global.openSideNavs.includes('INTENTIONS')) {
+        //         global.openSideNavs.splice(global.openSideNavs.indexOf('INTENTIONS'), 1);
+        //         global.openSideNavElements.splice(global.openSideNavElements.indexOf(document.getElementById('intentionsSideNav')), 1);
+        //     }
 
-            checkForChangeMenuButtonsFormatting();
+        //     checkForChangeMenuButtonsFormatting();
 
-        });
+        // });
 
         document.getElementById("testimonials_menu_close_button").addEventListener("click", function (e) {
             document.getElementById("testimonialsSideNav").style.width = "0";
@@ -5901,9 +5896,9 @@ export function addTag(event, addDefaultTagButton) {
             addedTagButtons = document.querySelectorAll('.grid-item .added_tag_button');
         }
         if (addedTagButtons.length >= 30) {
-            snackbarMessage.innerHTML = "You can only have up to 30 tags!";
-            snackbarMessage.className = "show";
-            setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+            global.snackbarMessage.innerHTML = "You can only have up to 30 tags!";
+            global.snackbarMessage.className = "show";
+            setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             return;
         }
         // don't add the tag if it's already been added
@@ -5958,18 +5953,18 @@ export function onKeyPressAddingTag(event) {
         }
 
         if (addedTagButtons.length >= 30) {
-            snackbarMessage.innerHTML = "You can only have up to 30 tags!";
-            snackbarMessage.className = "show";
-            setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+            global.snackbarMessage.innerHTML = "You can only have up to 30 tags!";
+            global.snackbarMessage.className = "show";
+            setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
             return;
         }
 
         if (event.target.value.includes(',') || event.target.value.includes('[') ||
             event.target.value.includes(']') || event.target.value.includes(':') ||
             event.target.value.includes('\\/') || event.target.value.includes('\\')) {
-            snackbarMessage.innerHTML = "The tag cannot contain ',', '[', ']', '\\', '\\/', or ':'.";
-            snackbarMessage.className = "show";
-            setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
+            global.snackbarMessage.innerHTML = "The tag cannot contain ',', '[', ']', '\\', '\\/', or ':'.";
+            global.snackbarMessage.className = "show";
+            setTimeout(function () { global.snackbarMessage.className = global.snackbarMessage.className.replace("show", ""); }, 3000);
 
             return;
         }
@@ -6042,7 +6037,7 @@ if (document.getElementById("menus_container")) { // will only be true for pages
     // form_data.append("entry_id", entry_id);
 
     $.ajax({
-        url: "create_intention_functions.php",
+        url: global.websiteFullURL + "create_intention_functions.php",
         cache: false,
         contentType: false,
         processData: false,

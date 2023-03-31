@@ -4,6 +4,7 @@ import {
   closeMenusWindow, ChangeIntentionsShown,
   postIntention, loadSearchResults
 } from "../../js/global-functions.js"
+import styles from "../../css/common-entry-styling.module.css"
 
 const cssId = 'toggleSwitchCSS';
 
@@ -52,11 +53,11 @@ function Home() {
 
 
       <div id="intentionsSideNav" className="sidenav menu-list-item-map" style={{zIndex: "100"}}>
-        <button id="intentions_menu_close_button" className="closebtn">x</button>
-        <button className="close_menus_window_button" onClick={closeMenusWindow}>xxx</button>
+        {/* <button id="intentions_menu_close_button" className="closebtn">x</button> */}
+        {/* <button className="close_menus_window_button" onClick={closeMenusWindow}>xxx</button> */}
 
         <div className="logo_in_menu_container">
-          <img id="logo_in_intentions_menu" src="images/Ask-God-Together-Logo-1.png" width="150" height="150" alt="worldwideprayer" />
+          <img id="logo_in_intentions_menu" src={require("../../images/Ask-God-Together-Logo-1.png")} width="150" height="150" alt="worldwideprayer" />
         </div>
 
         <div id="prayer-intentions-tab-container" className="switch-toggle switch-3">
