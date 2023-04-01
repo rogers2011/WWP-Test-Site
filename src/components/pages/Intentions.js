@@ -1,7 +1,9 @@
+import React, { useRef } from 'react';
 import SortEntriesMenu from "../SortEntriesMenu";
 import AddTagsHTML from "../AddTagsHTML";
+// import { Editor } from '@tinymce/tinymce-react';
 import {
-  closeMenusWindow, ChangeIntentionsShown,
+  ChangeIntentionsShown,
   postIntention, loadSearchResults
 } from "../../js/global-functions.js"
 import styles from "../../css/common-entry-styling.module.css"
@@ -25,11 +27,11 @@ if (!document.getElementById(cssId)) // only load the css file if it was not loa
 function showIntentionCreator() {
   if (!localStorage.getItem('isUserLoggedIn')) {
 
-    // snackbarMessage.innerHTML = "Please login to post an intention!";
-    // snackbarMessage.className = "show";
-    // setTimeout(function() {
-    //     snackbarMessage.className = snackbarMessage.className.replace("show", "");
-    // }, 3000);
+    global.snackbarMessage.innerHTML = "Please login to post an intention!";
+    global.snackbarMessage.className = "show";
+    setTimeout(function () {
+      global.snackbarMessage.className = global.snackbarMessage.className.replace("show", "");
+    }, 3000);
 
     return;
   }
@@ -45,14 +47,42 @@ function showIntentionCreator() {
   }
 }
 
-function Home() {
+
+function Intentions() {
+
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
 
   return (
     <>
 
+      {/* <Editor
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue="<p>This is the initial content of the editor.</p>"
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+          ],
+          toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        }}
+      />
+      <button onClick={log}>Log editor content</button> */}
 
 
-      <div id="intentionsSideNav" className="sidenav menu-list-item-map" style={{zIndex: "100"}}>
+
+      <div id="intentionsSideNav" className="sidenav menu-list-item-map" style={{ zIndex: "100" }}>
         {/* <button id="intentions_menu_close_button" className="closebtn">x</button> */}
         {/* <button className="close_menus_window_button" onClick={closeMenusWindow}>xxx</button> */}
 
@@ -63,7 +93,7 @@ function Home() {
         <div id="prayer-intentions-tab-container" className="switch-toggle switch-3">
           {/* <!-- these classes are from the imported file https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css (imported in header)--> */}
           <input id="all_intentions" name="state-d" type="radio" value="1" checked="" />
-          <label id="all_intentions_label" htmlFor="all_intentions" onClick={()=>{ChangeIntentionsShown('ALL')}}>All Prayers</label>
+          <label id="all_intentions_label" htmlFor="all_intentions" onClick={() => { ChangeIntentionsShown('ALL') }}>All Prayers</label>
 
           {/* <!-- neutral button for when user hasn't set their gender yet (becomes disabled after user chooses one) -->
             <!-- <div id="na" style="display: none;">
@@ -72,19 +102,19 @@ function Home() {
         </div> --> */}
 
           <input id="my_intentions" name="state-d" type="radio" value="0" />
-          <label id="my_intentions_label" htmlFor="my_intentions" onClick={()=>{ChangeIntentionsShown('MINE')}}>My Prayers</label>
+          <label id="my_intentions_label" htmlFor="my_intentions" onClick={() => { ChangeIntentionsShown('MINE') }}>My Prayers</label>
 
           <input id="saved_intentions" name="state-d" type="radio" value="0" />
-          <label id="saved_intentions_label" htmlFor="saved_intentions" onClick={()=>{ChangeIntentionsShown('SAVED')}}>Saved Prayers</label>
+          <label id="saved_intentions_label" htmlFor="saved_intentions" onClick={() => { ChangeIntentionsShown('SAVED') }}>Saved Prayers</label>
 
           <input id="followed_intentions" name="state-d" type="radio" value="0" />
-          <label id="followed_intentions_label" htmlFor="followed_intentions" onClick={()=>{ChangeIntentionsShown('FOLLOWED')}}>Followed Prayers</label>
+          <label id="followed_intentions_label" htmlFor="followed_intentions" onClick={() => { ChangeIntentionsShown('FOLLOWED') }}>Followed Prayers</label>
 
         </div>
 
         <hr className="create_intention_divider" />
 
-        <button id="show_intention_creator_button" className="menu-list-item create_intention_button" type="submit" onClick={()=>{showIntentionCreator()}}>Offer a Prayer</button>
+        <button id="show_intention_creator_button" className="menu-list-item create_intention_button" type="submit" onClick={() => { showIntentionCreator() }}>Offer a Prayer</button>
 
         <div id="create_intention_container" className="create_intention_container_3">
 
@@ -101,13 +131,13 @@ function Home() {
                 <input type="text" id="intention_title_input" name="intention_title_input" placeholder="Intention Title" autoComplete="off" maxLength="100" /><br />
               </div>
 
-              <textarea id="intentions_text_area" name="intentionsTextArea" placeholder="Intention Description" style={{justifyContent: "center", textAlign: "left"}} wrap="hard" maxLength="5000000"></textarea>
+              <textarea id="intentions_text_area" name="intentionsTextArea" placeholder="Intention Description" style={{ justifyContent: "center", textAlign: "left" }} wrap="hard" maxLength="5000000"></textarea>
             </div>
           </div>
 
           <AddTagsHTML />
 
-          <button id="post_intention_button" className="menu-list-item create_intention_button" type="submit" onClick={()=>{postIntention()}}>Let's Ask God Together</button>
+          <button id="post_intention_button" className="menu-list-item create_intention_button" type="submit" onClick={() => { postIntention() }}>Let's Ask God Together</button>
 
         </div>
 
@@ -130,7 +160,7 @@ function Home() {
             <!-- <form> --> */}
           <div id="search-form-container" className="search-form-container">
             <div id="intentions_menu_input_container" className="search-form-cell">
-              <input id="intentions_menu_search_input" type="text" onClick={()=>{loadSearchResults(1, 0, 'INTENTIONS')}} onKeyUp={()=>{loadSearchResults(0, 0, 'INTENTIONS')}} placeholder="Search for intentions...." name="search" />
+              <input id="intentions_menu_search_input" type="text" onClick={() => { loadSearchResults(1, 0, 'INTENTIONS') }} onKeyUp={() => { loadSearchResults(0, 0, 'INTENTIONS') }} placeholder="Search for intentions...." name="search" />
             </div>
             {/* <!-- <div className="search-form-cell"> -->
                 <!-- disabling this button cause it doesn't do anything anyway and if not disabled when the user clicks it the search results disappear -->
@@ -138,7 +168,7 @@ function Home() {
                 <!-- </div> --> */}
           </div>
           {/* <!-- </form> --> */}
-          <div id="search_results" className="w3-dropdown-content w3-card-4 w3-bar-block" style={{width:"500px"}}>
+          <div id="search_results" className="w3-dropdown-content w3-card-4 w3-bar-block" style={{ width: "500px" }}>
 
           </div>
         </div>
@@ -154,4 +184,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Intentions;

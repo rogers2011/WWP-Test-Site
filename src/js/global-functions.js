@@ -444,7 +444,7 @@ function startCountdownTimer() {
     }
 }
 
-function sort_entries(e, sortEntriesBy) {
+export function sort_entries(e, sortEntriesBy) {
     console.log(e);
 
     var category;
@@ -1378,7 +1378,7 @@ export function ChangeIntentionsShown(category) {
     }
 }
 
-function ChangeTestimonialsShown(category) {
+export function ChangeTestimonialsShown(category) {
 
     var entries_sorted_by_text = document.querySelector('#testimonialsSideNav .entries_sorted_by_text');
     entries_sorted_by_text.innerHTML = 'Newest';
@@ -2193,6 +2193,7 @@ function parseGetUsersResponse(response) {
 }
 
 export function clearPrayerRoomsList() {
+    console.log('Clearing intentions, testimonials, pearls, and prayer rooms.')
     global.idList = [];
     global.creatorNameList = [];
     global.roomNameList = [];
@@ -3395,16 +3396,34 @@ function getSinglePrayerRoom(numRow) {
 
 }
 
-// load more intentions when the user scrolls to the bottom of the list
-$('#intentionsSideNav').scroll(function () {
-    // console.log("scrolled intentions sidenav");
-    // console.log('document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom', document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom)
-    // console.log('document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom', document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom);
-    if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
-        - document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 30 <= 0 && (global.intentionsIDList.length > 5)) {
-        loadIntentionsList(currentIntentionsSelection, 'mostRecent', 10, intentionsSearchInput, '');
+// // load more intentions when the user scrolls to the bottom of the list
+// $('#intentionsSideNav').on('scroll', function () {
+//     console.log("scrolled intentions sidenav");
+//     // console.log('document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom', document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom)
+//     // console.log('document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom', document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom);
+
+//     // I must've added the (global.intentionsIDList.length > 5) criteria for some reason but not sure what. For now am
+//     // removing.
+//     // if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
+//     //     - document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 30 <= 0 && (global.intentionsIDList.length > 5)) {
+//     if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
+//         - document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 30 <= 0) {
+//         loadIntentionsList(currentIntentionsSelection, 'mostRecent', 10, intentionsSearchInput, '');
+//     }
+// });
+
+// Load more intentions when the user scrolls to the bottom of the list.
+// Had to do it this way cause the target of scrolling is only the entire document, never intentionsSideNav
+// so the scroll listeners for intentionsSideNav never trigger.
+document.addEventListener('scroll', function (event) {
+    // console.log('scrolling', event.target);
+    if (document.getElementById("intentionsSideNav")) { // If intentionsSideNav is currently on the page
+        if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
+            - document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 200 <= 0) {
+            loadIntentionsList(currentIntentionsSelection, 'mostRecent', 10, intentionsSearchInput, '');
+        }
     }
-});
+}, true /*Capture event*/);
 
 function goToIntentionFunction(e) {
     var numRow = $('#intentionsSideNav .room_row_info_container').index(this);
