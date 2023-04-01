@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 //import { Button } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,9 +11,10 @@ import Popper from "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import axios from "axios";
 import { useSnackbar } from "material-ui-snackbar-provider";
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from './Login';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import "./css/register.css";
+import { CheckBox, Text, StyleSheet, View } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -34,15 +34,12 @@ const Register = () => {
     password: "",
   });
 
-  
-
-
+  //console.log("data.checkboxTOS ", data.checkboxTOS);
+  // data.checkboxTOS
   const loginPage = async () => {
-   // await /* API call here */
-  
-  
-   history('/Login');
-  }
+    // await /* API call here */
+    history("/Login");
+  };
 
   const snackbar = useSnackbar();
 
@@ -53,15 +50,6 @@ const Register = () => {
   const handleAction = () => {
     // *snip*
   };
-  // data = React.useRef(null);
-  // useEffect(() => {
-  //console.log(data);
-  //    first_name_edittextbox.addEventListener("onkeydown", handleChangeFirstName);
-
-  //    return () => {
-  //       first_name_edittextbox.removeEventListener("onkeydown", handleChangeFirstName);
-  //};
-  //  }, []);
 
   //change handlechange for each edit text box!
   const handleChangeFirstName = (e) => {
@@ -280,6 +268,36 @@ const Register = () => {
     }
   };
 
+  // const [isSelected, setSelection] = useState(false);
+  // console.log('isSelected', isSelected);
+  // console.log('setSelection', setSelection);
+  const handleChangecheckboxTOS = (e) => {
+    setData({ ...data, [e.target.name]: e.target.checked });
+
+    data.checkboxTOS = e.target.checked;
+    // const isSelectede = e.target.isSelected;
+    console.log("data.checkboxTOS", data.checkboxTOS);
+    // console.log('isSelectede', isSelectede);
+    //const { value_TOS, checked_TOS } = data.checkboxTOS;
+    // console.log('value_TOS', value_TOS);
+    // console.log('checked_TOS', checked_TOS);
+    //console.log(data);   //data has the data of every key stroke in any of these inputs (first name, last name, email, username, password)
+    // Remove red text if entries are valid
+
+    if (data.checkboxTOS == false) {
+      console.log("Terms of service is not checked");
+      document.getElementById("confirm_TOS").textContent =
+        "Terms of service is not checked";
+      return;
+    }
+
+    if (data.checkboxTOS == true) {
+      console.log("Terms of service is checked");
+      document.getElementById("confirm_TOS").textContent = "";
+      return;
+    }
+  };
+
   const submitForm = (e) => {
     e.preventDefault(); // Prevent form submission
     //   console.log("first name:", document.getElementById("first-name").value);
@@ -315,22 +333,27 @@ const Register = () => {
     const error_text = "There is an error in your submission";
     if (!/^[a-zA-Z]/.test(data.first_name)) {
       console.log("First name must begin with a letter");
+      error_text = "First name must begin with a letter";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.first_name.length > 20) {
       console.log("First name entry is too long");
+      error_text = "First name entry is too long";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (!/^[a-zA-Z]/.test(data.last_name)) {
       console.log("Last name must begin with a letter");
+      error_text = "Last name must begin with a letter";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.last_name.length > 20) {
       console.log("Last name entry is too long");
+      error_text = "Last name entry is too long";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.email.length === 0) {
       console.log("email is empty");
+      error_text = "email is empty";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (
@@ -341,67 +364,75 @@ const Register = () => {
         )
     ) {
       console.log("Invalid email");
+      error_text = "Invalid email";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (regexp2.test(data.username)) {
       console.log("Username can only have numbers, letters, _ or -");
+      error_text = "Username can only have numbers, letters, _ or -";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.username.length < 6) {
       console.log("Username is too short");
+      error_text = "Username is too short";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.username.length > 30) {
       console.log("Username is too long");
+      error_text = "Username is too long";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     } else if (data.password.length < 8) {
       console.log("Password needs to be at least 8 characters");
+      error_text = "Password needs to be at least 8 characters";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     }
 
     if (regexp3.test(data.password)) {
-      console.log("Password has 1 uppercazse letter");
+      //     console.log("Password has 1 uppercazse letter");
       document.getElementById("password_uppercase_element").textContent = "";
     } else {
       console.log("Password needs at least 1 uppercase letter");
       document.getElementById("password_uppercase_element").textContent =
         "Password needs at least 1 uppercase letter";
-
+      error_text = "Password needs at least 1 uppercase letter";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
     }
 
     if (regexp5.test(data.password)) {
-      console.log("Password has 1 lowercase letter");
+      //   console.log("Password has 1 lowercase letter");
       document.getElementById("password_lowercase_element").textContent = "";
     } else {
       console.log("Password needs at least 1 lowercase letter");
       document.getElementById("password_lowercase_element").textContent =
         "Password needs at least 1 lowercase letter";
+      error_text = "Password needs at least 1 lowercase letter";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     }
 
     if (regexp7.test(data.password)) {
-      console.log("Password has 1 number");
+      //    console.log("Password has 1 number");
       document.getElementById("password_number_element").textContent = "";
     } else {
       console.log("Password needs at least 1 number");
       document.getElementById("password_number_element").textContent =
         "Password needs at least 1 number";
+      error_text = "Password needs at least 1 number";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     }
 
     if (regexp9.test(data.password)) {
-      console.log("Password has 1 special character");
+      //  console.log("Password has 1 special character");
       document.getElementById("password_specialcharacter_element").textContent =
         "";
     } else {
       console.log("Password needs at least 1 special character");
       document.getElementById("password_specialcharacter_element").textContent =
         "Password needs at least 1 special character";
+      error_text = "Password needs at least 1 special character";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     }
@@ -410,6 +441,18 @@ const Register = () => {
       console.log("Passwords do not match");
       document.getElementById("confirm_password_element").textContent =
         "Passwords do not match";
+      error_text = "Passwords do not match";
+      snackbar.showMessage(error_text, "Undo", () => handleUndo());
+      return;
+    }
+
+    console.log("data.checkboxTOS in Register", data.checkboxTOS);
+    if (data.checkboxTOS == true) {
+      console.log("Terms of service is checked");
+      document.getElementById("confirm_TOS").textContent = "";
+    } else if (data.checkboxTOS == false) {
+      console.log("Terms of service is not checked");
+      error_text = "Terms of service is not checked";
       snackbar.showMessage(error_text, "Undo", () => handleUndo());
       return;
     }
@@ -430,25 +473,36 @@ const Register = () => {
         password: data.password,
       },
       success: function (response) {
-        console.log("Response:", response); // response.responseText);
+        console.log("Response: ", response); // response.responseText);
         // window.open("./home", "_self");
         if (response.includes("Register Successful")) {
           console.log("Register was successful");
-          snackbar.showMessage("A link has been sent to your email for you to confirm your account!", "Undo", () => handleUndo());
-
+          snackbar.showMessage(
+            "A link has been sent to your email for you to confirm your account!",
+            "Undo",
+            () => handleUndo()
+          );
+          history("/login");
           //        snackbarMessage.innerHTML = "A link has been sent to your email for you to confirm your account!";
           //       snackbarMessage.className = "show";
           //        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
-         } else if (response.includes('"error":true')) {
+        } else if (response.includes('"error":true')) {
           // after json decode or w/e can just print out response.error_msg
           //       snackbarMessage.innerHTML = "There was an error registering your account: " + response.substring(response.indexOf('"error_msg":') + '"error_msg":'.length, response.length - 1);
           //       snackbarMessage.className = "show";
           //        setTimeout(function () { snackbarMessage.className = snackbarMessage.className.replace("show", ""); }, 3000);
-       
-       snackbar.showMessage(response.substring(response.indexOf('"error_msg":') + '"error_msg":"'.length, response.length - 2), "Undo", () => handleUndo());
-       //snackbar.showMessage(response.substring('"error_msg".', response.length - 1) , "Undo", () => handleUndo());
-    }  
-     return;
+
+          snackbar.showMessage(
+            response.substring(
+              response.indexOf('"error_msg":') + '"error_msg":"'.length,
+              response.length - 2
+            ),
+            "Undo",
+            () => handleUndo()
+          );
+          //snackbar.showMessage(response.substring('"error_msg".', response.length - 1) , "Undo", () => handleUndo());
+        }
+        return;
       },
       error: function (error) {
         console.log("There was an error registering", error);
@@ -468,20 +522,19 @@ const Register = () => {
     <Container
       fluid
       className="d-flex align-items-center justify-content-center bg-image"
-      style={{
-        backgroundImage:
-          "url(https://worldwideprayer.world/WWPBackgroundPhotos/prayerpic24.png)",
-      }}
+      id="register-Container"
+      // style={{
+      //    backgroundImage:
+      //      "url(https://worldwideprayer.world/WWPBackgroundPhotos/prayerpic24.png)",
+      //  }}
     >
       <div className="mask gradient-custom-3"></div>
-      <MDBCard className="m-5" style={{ maxWidth: "500px", opacity:"75%" }}>
+      <MDBCard className="m-5" id="register-MDBCard">
         <MDBCardBody className="px-5">
           <form onSubmit={submitForm}>
             <div className="row">
-              <div className="col-md-12 text-center">
-                <h2 className="text-uppercase text-center mb-5">
-                  Create an account
-                </h2>
+              <div className="col-md-12 text-center mb-5">
+                <div id="register-Title">Create an account</div>
               </div>
             </div>
             <div className="row">
@@ -634,15 +687,24 @@ const Register = () => {
               </span>
             </div>
 
-            <div className="d-flex flex-row justify-content-center mb-4">
-              <MDBCheckbox
-                name="flexCheck"
-                id="flexCheckDefault"
-                label="I agree all statements in Terms of service"
-              />
+            <div>
+              <div className="d-flex flex-row justify-content-center">
+                <MDBCheckbox
+                  value={data.checkboxTOS}
+                  // onChange={setSelection}
+                  name="checkboxTOS"
+                  id="checkboxTOS_checkbox"
+                  // checked="checked"
+                  onChange={handleChangecheckboxTOS}
+                  label="I agree to all statements in Terms of service"
+                />
+              </div>
+              <div id="confirm_TOS" className="text-center justify-content-center red  mb-4" style={{ color: "red" }}>
+                {""}
+              </div>
             </div>
 
-            <div className="row">
+            <div className="row mb-4">
               <Button
                 //    className="mb-4 w-100 gradient-custom-4"
                 name="submit"
@@ -656,9 +718,9 @@ const Register = () => {
             </div>
 
             <div className="row">
-              <div className="d-flex flex-row justify-content-center mb-4">
+              <span className="d-flex justify-content-center">
                 Already have an account?
-              </div>
+              </span>
               <Button
                 //   className="mb-4 w-100 gradient-custom-4"
                 name="submit"
@@ -672,7 +734,7 @@ const Register = () => {
             </div>
 
             <div className="row">
-            <div className="col-md-12 text-center"></div>
+              <div className="col-md-12 text-center"></div>
             </div>
           </form>
         </MDBCardBody>
