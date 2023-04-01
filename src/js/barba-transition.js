@@ -238,7 +238,7 @@ global.tagsListSingle = [];
 global.prayerRoomsReactsArraysSingle = [];
 
 
-function getUserDataFromResponse(response) {
+export function getUserDataFromResponse(response) {
     console.log("response from getUserDataFromResponse: " + response);
     response = JSON.parse(response);
     console.log("response from getUserDataFromResponse: ", response);
