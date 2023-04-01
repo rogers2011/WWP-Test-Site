@@ -1,0 +1,26 @@
+
+
+
+
+/* STYLING ENTRY ROW */
+.entry_row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  /* cursor: pointer; */
+  align-items: center;
+  border: purple 1px solid;
+  border-radius: 5px;
+  transition: ease 0.5s, .6s ease opacity, .6s ease transform;
+  opacity: 0;
+  transform: scale(0);
+  max-height: 400px;
+  overflow: auto;
+  text-align: left;
+  color: purple
+}
+
+.entry_row:hover {
+  background-color: mediumpurple;
+}
+

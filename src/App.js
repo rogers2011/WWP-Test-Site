@@ -4,10 +4,10 @@ import "./css/App.css";
 import TopMenu from "./components/menus/TopMenu";
 import PrimaryMenu from "./components/menus/PrimaryMenu";
 import Home from "./components/pages/Home";
+import Intentions from "./components/pages/Intentions";
 import Login from "./Login";
 import Register from "./Register";
 import TermsOfService from "./TermsOfService";
-// import Intentions from "./components/pages/Intentions";
 import PageNotFound from "./components/pages/PageNotFound";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SnackbarProvider } from 'material-ui-snackbar-provider'
@@ -20,7 +20,7 @@ function App() {
           <TopMenu />
           <Routes>
           <Route path = "/" element = {<Home/>} />
-          {/* <Route path = "/intentions" element = {<Intentions/>} /> */}
+          <Route path = "/intentions" element = {<Intentions/>} />
           <Route element = {<PageNotFound/>} />
           <Route path = "/login" element = {<Login/>} />
           <Route path = "/register" element = {<Register/>} />
