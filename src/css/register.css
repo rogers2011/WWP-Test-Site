@@ -1,0 +1,24 @@
+#register-Container {
+    background-image: url('https://worldwideprayer.world/BackgroundGifs/39.gif'); 
+    background-attachment: fixed;
+    margin: 0;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Futura;
+}
+
+#register-MDBCard {
+    margin: 0;
+    height: 100%;
+    max-width: 500px;
+    opacity: 76%;
+}
+
+#register-Title{
+    font-size: x-large;
+    position: 'center';
+    text-transform: uppercase;
+  }

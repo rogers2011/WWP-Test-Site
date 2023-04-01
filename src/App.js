@@ -5,6 +5,9 @@ import TopMenu from "./components/menus/TopMenu";
 import PrimaryMenu from "./components/menus/PrimaryMenu";
 import Home from "./components/pages/Home";
 import Intentions from "./components/pages/Intentions";
+import Login from "./Login";
+import Register from "./Register";
+import TermsOfService from "./TermsOfService";
 import PageNotFound from "./components/pages/PageNotFound";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SnackbarProvider } from 'material-ui-snackbar-provider'
@@ -19,6 +22,9 @@ function App() {
           <Route path = "/" element = {<Home/>} />
           <Route path = "/intentions" element = {<Intentions/>} />
           <Route element = {<PageNotFound/>} />
+          <Route path = "/login" element = {<Login/>} />
+          <Route path = "/register" element = {<Register/>} />
+          <Route path = "/terms_of_service" element = {<TermsOfService/>} />
           </Routes>
           <PrimaryMenu />
       </Router>
