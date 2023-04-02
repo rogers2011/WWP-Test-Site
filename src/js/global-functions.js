@@ -244,7 +244,7 @@ function countdownTimerFunction() {
     // }
 };
 
-function startCountdownTimer() {
+export function startCountdownTimer() {
 
     var time1Element = document.getElementById("time_one");
     var time2Element = document.getElementById("time_two");
@@ -264,7 +264,11 @@ function startCountdownTimer() {
 
     if (typeof (Worker) !== "undefined") {
         if (typeof (global.worker) == "undefined") {
-            global.worker = new Worker("js/worker.js?version=" + Date.now());
+            global.worker = new Worker("./js/worker.js?version=" + Date.now());
+            console.log(global.worker)
+        }
+        global.worker.onerror = function (event) {
+            console.log(event)
         }
         global.worker.onmessage = function (event) {
             //   document.getElementById("result").innerHTML = event.data;
