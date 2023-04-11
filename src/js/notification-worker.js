@@ -1,7 +1,6 @@
-
 const workercode = () => {
     // importScripts('index.js');                 /* imports just "foo.js" */
-    console.log('in worker.js')
+
     // var i = 0;
 
     // function timedCount() {
@@ -11,9 +10,7 @@ const workercode = () => {
     // }
 
     // timedCount();
-
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const dateandtime = urlParams.get('dateandtime');
+    // var i = 0;
 
     var d1, d2, d3;
 
@@ -85,8 +82,7 @@ const workercode = () => {
         if (longestTimeTillPrayer < millisTillPrayer3) {
             longestTimeTillPrayer = millisTillPrayer3;
         }
-        // console.log("shortestTimeTillPrayer: " + shortestTimeTillPrayer, "longestTimeTillPrayer: " + longestTimeTillPrayer,
-        // "millisTillPrayer1: " + millisTillPrayer1, "millisTillPrayer2: " + millisTillPrayer2, "millisTillPrayer3: " + millisTillPrayer3); 
+        //console.log("shortestTimeTillPrayer: " + shortestTimeTillPrayer); 
 
         // var hours, minutes, seconds;
         timeAtNextPrayer = new Date().getTime() + shortestTimeTillPrayer;
@@ -97,10 +93,10 @@ const workercode = () => {
 
 
 
+        // console.log("in notification-worker.js: " + i);
+        // i++;
 
-
-        postMessage([timeLeft, timeAtNextPrayer, shortestTimeTillPrayer, longestTimeTillPrayer, nextPrayerNum,
-            d1.toLocaleTimeString(), d2.toLocaleTimeString(), d3.toLocaleTimeString()]);
+        postMessage([timeLeft, nextPrayerNum]);
 
 
     }, 1000);
@@ -108,9 +104,9 @@ const workercode = () => {
 }
 
 let code = workercode.toString();
-code = code.substring(code.indexOf("{")+1, code.lastIndexOf("}"));
+code = code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));
 
-const blob = new Blob([code], {type: "application/javascript"});
+const blob = new Blob([code], { type: "application/javascript" });
 const worker_script = URL.createObjectURL(blob);
 
 // module.exports = worker_script;

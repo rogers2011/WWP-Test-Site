@@ -28,11 +28,11 @@ html, body {
 
 } */
 
-#wwp-android-link {
+.wwp-android-link {
     z-index: 1000;
 }
 
-#wwp-ios-link {
+.wwp-ios-link {
     z-index: 1000;
 }
 
@@ -53,7 +53,7 @@ html, body {
     background: #9966cc;
 }
 
-#arrow_to_social_part_of_site_container {
+.arrow_to_social_part_of_site_container {
     opacity: 0; 
     cursor:pointer; 
     z-index: 10; 
@@ -89,7 +89,7 @@ html, body {
 }
 */
 
-#arrow_to_social_part_of_site {
+.arrow_to_social_part_of_site {
     width:60px; 
     height:80px;
 }
@@ -122,13 +122,13 @@ html, body {
     margin-bottom:-1%;
 }
 
-#days, #hours, #minutes, #seconds {
+.days, .hours, .minutes, .seconds {
     display:inline; 
     font-size: 350%;
     font-family: Times;
 }
 
-#prayer_times_description {
+.prayer_times_description {
     text-align:center; 
     color:white; 
     font-size:240%; 
@@ -137,28 +137,28 @@ html, body {
     font-family: Times;
 }
 
-#times_of_prayer {
+.times_of_prayer {
     text-align:center; 
     color:white; 
     margin-bottom: 2%;
 }
 
-#time_one, #time_two, #time_three {
+.time_one, .time_two, .time_three {
     font-size: 270%;
 }
 
-#time_one, #time_two {
+.time_one, .time_two {
     display:inline; 
     margin-right:3%; 
     font-family: Times;
 }
 
-#time_three {
+.time_three {
     display:inline; 
     font-family: Times;
 }
 
-#people_in_meditation_top_of_homepage {
+.people_in_meditation_top_of_homepage {
     white-space: nowrap; 
     font-size: 250%; 
     text-align:center; 
@@ -167,7 +167,7 @@ html, body {
     color:white;
 }
 
-#popup_containing_text {
+.popup_containing_text {
     border: 3px solid white; 
     text-align: center; 
     vertical-align:middle; 
@@ -178,7 +178,7 @@ html, body {
     margin-top: 70px;
 }
 
-#bottom_sub_container {
+.bottom_sub_container {
     margin-top:4%; 
     /* margin-bottom: -8%; */
     margin-right:4%; 
@@ -186,14 +186,14 @@ html, body {
     white-space:nowrap;
 }
 
-#count_icon {
+.count_icon {
     text-align:center; 
     display:inline-block; 
     vertical-align:middle; 
     width: 79px;
   }
 
-  #count {
+  .count {
     position: relative; 
     font-family: Times; 
     text-align:center; 
@@ -205,20 +205,20 @@ html, body {
     font-size: 50px;
 }
 
-#top_sub_container {
+.top_sub_container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#meditation_count_icon {
+.meditation_count_icon {
   text-align:center; 
   display:inline-block; 
   vertical-align:middle; 
   width: 79px;
 }
 
-#meditation_count {
+.meditation_count {
     position: relative; 
     font-family: Times; 
     text-align:center; 
@@ -228,12 +228,12 @@ html, body {
     margin: 0;
 }
 
-#bottom_container {
+.bottom_container {
     /* height: 100%;
     display: table; */
 }
 
-.indexPage #highlight {
+.indexPage .highlight {
    
      background-color: yellow;
      color: red;
@@ -258,7 +258,7 @@ html, body {
     }
 }
 
-.indexPage #meditation_count_animtated {
+.indexPage .meditation_count_animtated {
    animation: change 2s infinite;
 }
 
@@ -451,7 +451,7 @@ html, body {
    /* position: absolute; */
    /* top: 100vh; */
 /* } */
-.indexPage #bottom_of_homepage {
+.indexPage .bottom_of_homepage {
     /* Using height: 100vh means the element in question always be 100% height of the viewport a user / devie has.  */
    min-height: 100vh; 
    min-width: 100%; 
@@ -486,7 +486,7 @@ html, body {
   /* background-blend-mode: luminosity; */
 /* } */
 
-.indexPage #meditation_text {
+.indexPage .meditation_text {
   font-size:230%;
   font-family:Times;
    padding-left:15%; 
@@ -519,7 +519,7 @@ body {
    margin: 0;
 }
 
-.indexPage #highlight {
+.indexPage .highlight {
    background-color: yellow;
    color: red;
 }
@@ -672,26 +672,26 @@ body {
 
 /* START OF STYLING TITLE IN PEOPLE IN MEDITATION BOX */
 
-.indexPage #meditation_title_div_container_container {
+.indexPage .meditation_title_div_container_container {
     /* to center vertically */
     display: table;
   /* end center vertically */
 }
 
-.indexPage #meditation_title_div_container {
+.indexPage .meditation_title_div_container {
         /* to center vertically */
     display: table-cell;
   vertical-align: middle;
     /* end center vertically */
 }
 
-.indexPage #meditation_title_div {
+.indexPage .meditation_title_div {
     display:inline-block;
     margin-bottom: 10px;
     white-space: nowrap; /* to keep on the same line */
 }
 
-.indexPage #meditation_title {
+.indexPage .meditation_title {
     float:left;
     font-size:25px;
     width:65%;
@@ -782,7 +782,7 @@ body {
     box-sizing: border-box
 }
 
-#intro-slideshow-container-container {
+.intro-slideshow-container-container {
     z-index: 1000;
     position: fixed;
     opacity: 0;
@@ -938,7 +938,7 @@ body {
     }
 }
 
-#tutorial_button_container {
+.tutorial_button_container {
     float: left;
     cursor: pointer;
     transition: 0.5s ease;
@@ -949,11 +949,11 @@ body {
     /* left: 0; */
 }
 
-#tutorial_button_container:hover {
+.tutorial_button_container:hover {
     background-color: rgba(110, 56, 164, 0.8);
 }
 
-#tutorial_button_icon {
+.tutorial_button_icon {
     width: 70px;
 }
 
@@ -961,11 +961,11 @@ body {
 
 /* CONTACT US FORM STYLING */
 
-.indexPage #myModal {
+.indexPage .myModal {
     background: rgba(75,50,99,0.8);
 }
 
-#email_us_button {
+.email_us_button {
     /* position: absolute; */
     /* top: 89vh; */
     /* right: 0; */
@@ -984,7 +984,7 @@ body {
     color: white;
 }
 
-#form_container
+.form_container
 {
 	padding:15px 15px;
 	margin-top:15px;
@@ -1008,22 +1008,22 @@ body {
   opacity: 0;
 }
 
-#contact_us_textarea {
+.contact_us_textarea {
     width: 100%;
     font-size: 16px;
     min-height: 300px;
 }
 
-#contact_us_name, #contact_us_user_email {
+.contact_us_name, .contact_us_user_email {
     width: 89%;
     font-size: 16px;
 }
 
-#contact_us_title {
+.contact_us_title {
     font-size: 50px;
 }
 
-#contact_us_description {
+.contact_us_description {
     font-size: 20px;
 }
 
@@ -1031,17 +1031,17 @@ body {
     font-size: 15px;
 }
 
-#contact_us_user_info_container {
+.contact_us_user_info_container {
     text-align: end;
     text-align: -webkit-right;
 }
 
-#contact_us_send_message_button {
+.contact_us_send_message_button {
     font-size: 16px;
     margin-top: 10px;
 }
 
-#contact_us_close_button {
+.contact_us_close_button {
     font-size: 40px;
     position: absolute;
     top: 10px;
@@ -1053,11 +1053,11 @@ body {
 
 /* END CONTACT US FORM STYLING */
 
-#index_body #menu_buttons_container_top_bar {
+.index_body .menu_buttons_container_top_bar {
     position: relative;
 }
 
-#bottom_navbar {
+.bottom_navbar {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -1072,7 +1072,7 @@ body {
 
 }
 
-#bottom_navbar div {
+.bottom_navbar div {
     border: 1px solid white;
     width: 100%;
     display: flex;
@@ -1087,11 +1087,11 @@ body {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-#bottom_navbar div:hover {
+.bottom_navbar div:hover {
     background-color: rgba(110, 56, 164, 1.0);
 }
 
-#scrollToWorldWidePrayer {
+.scrollToWorldWidePrayer {
     background: url('../images/cross-icon-8a2be2.png');
     background-size: contain;
     -webkit-background-size: contain;
@@ -1101,7 +1101,7 @@ body {
     background-position: center;
 }
 
-#bottom_navbar p, #bottom_navbar div  {
+.bottom_navbar p, .bottom_navbar div  {
     font-size: 16px !important;
 }
 
@@ -1112,7 +1112,7 @@ body {
     font-size: 26px;
 }
 
-#bottom_of_homepage p {
+.bottom_of_homepage p {
     /* text-shadow: 1px 1px 2px purple, 0 0 25px white, 0 0 5px purple; */
     text-shadow: 1px 1px 2px black, 0 0 5px white, 0 0 5px black;
 }
