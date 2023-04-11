@@ -2,6 +2,9 @@ import $ from 'jquery';
 import { Mark } from 'mark.js';
 import { Editor } from '@tinymce/tinymce-react';
 import { getPearlsSettings, getPrayerRoomSettings } from './create_prayer_room.js'
+import worker_script from './worker.js'
+import notification_worker_script from './notification-worker.js'
+
 
 // this variable is useful for other files to check if this 'global-function.js' file has loaded  (you write 'if (typeof globalFunctions !== 'undefined') {}' ... )
 var currentRoomsSelection = '';
@@ -246,22 +249,22 @@ export function startCountdownTimer() {
     var time2Element = document.getElementById("time_two");
     var time3Element = document.getElementById("time_three");
 
+
     if (!time1Element) {
-        time1Element = document.getElementById("hours")
+        time1Element = document.getElementById("time_one")
     }
     if (!time2Element) {
-        time2Element = document.getElementById("minutes")
+        time2Element = document.getElementById("time_two")
     }
     if (!time3Element) {
-        time3Element = document.getElementById("seconds")
+        time3Element = document.getElementById("time_three")
     }
 
     var timeAtNextPrayer, now2, timeLeft, nextPrayerNum;
 
     if (typeof (Worker) !== "undefined") {
         if (typeof (global.worker) == "undefined") {
-            global.worker = new Worker("./js/worker.js?version=" + Date.now());
-            console.log(global.worker)
+            global.worker = new Worker(worker_script);
         }
         global.worker.onerror = function (event) {
             console.log(event)
@@ -1534,7 +1537,7 @@ function checkForNotifications() {
 var notification_worker;
 if (typeof (Worker) !== "undefined") {
     if (typeof (notification_worker) == "undefined") {
-        notification_worker = new Worker("js/notification-worker.js?version=" + Date.now());
+        notification_worker = new Worker(notification_worker_script);
     }
     notification_worker.onmessage = function (event) {
         //   document.getElementById("result").innerHTML = event.data;
@@ -2341,8 +2344,9 @@ function removeSearchResults(userClicked) {
 $('#myPrayerRoomsSideNav').scroll(function () {
     // console.log('document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom', document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom)
     // console.log('document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom', document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom);
-    if (document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom
-        - document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom - 30 <= 0 && (global.idList.length > 5)) {
+    // if (document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom
+    //     - (document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom - 30) <= 0 && (global.idList.length > 5)) {
+    if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 2)) { // need -2 because on macs there is a small offset of screen height or something: https://stackoverflow.com/questions/9439725/how-to-detect-if-browser-window-is-scrolled-to-bottom   
         loadPrayerRoomsList(currentRoomsSelection, 'mostRecent', 10, prayerRoomsSearchInput, '');
     }
 });
@@ -3418,8 +3422,9 @@ function getSinglePrayerRoom(numRow) {
 document.addEventListener('scroll', function (event) {
     // console.log('scrolling', event.target);
     if (document.getElementById("intentionsSideNav")) { // If intentionsSideNav is currently on the page
-        if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
-            - document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 200 <= 0) {
+        // if (document.getElementById("intentionsMenuList").getBoundingClientRect().bottom
+        //     - (document.getElementById("intentionsSideNav").getBoundingClientRect().bottom - 50) <= 0) {
+        if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 2)) { // need -2 because on macs there is a small offset of screen height or something: https://stackoverflow.com/questions/9439725/how-to-detect-if-browser-window-is-scrolled-to-bottom
             loadIntentionsList(currentIntentionsSelection, 'mostRecent', 10, intentionsSearchInput, '');
         }
     }
@@ -4096,8 +4101,9 @@ $('#testimonialsSideNav').scroll(function () {
     // console.log("scrolled testimonials sidenav");
     // console.log('document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom', document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom)
     // console.log('document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom', document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom);
-    if (document.getElementById("testimonialsMenuList").getBoundingClientRect().bottom
-        - document.getElementById("testimonialsSideNav").getBoundingClientRect().bottom - 30 <= 0 && (global.testimonialsIDList.length > 5)) {
+    // if (document.getElementById("testimonialsMenuList").getBoundingClientRect().bottom
+    //     - (document.getElementById("testimonialsSideNav").getBoundingClientRect().bottom - 30) <= 0 && (global.testimonialsIDList.length > 5)) {
+    if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 2)) { // need -2 because on macs there is a small offset of screen height or something: https://stackoverflow.com/questions/9439725/how-to-detect-if-browser-window-is-scrolled-to-bottom
         loadTestimonialsList(currentTestimonialsSelection, 'mostRecent', 10, testimonialsSearchInput, '');
     }
 });
@@ -4764,8 +4770,9 @@ function parseTestimonialsResponse(response, unshift = false) {
 $('#pearlsSideNav').scroll(function () {
     // console.log('document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom', document.getElementById("myPrayerRoomsSideNav").getBoundingClientRect().bottom)
     // console.log('document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom', document.getElementById("myRoomsMenuList").getBoundingClientRect().bottom);
-    if (document.getElementById("pearlsMenuList").getBoundingClientRect().bottom
-        - document.getElementById("pearlsSideNav").getBoundingClientRect().bottom - 30 <= 0 && (global.pearlsIDList.length > 5)) {
+    // if (document.getElementById("pearlsMenuList").getBoundingClientRect().bottom
+    //     - (document.getElementById("pearlsSideNav").getBoundingClientRect().bottom - 30) <= 0 && (global.pearlsIDList.length > 5)) {
+    if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 2)) { // need -2 because on macs there is a small offset of screen height or something: https://stackoverflow.com/questions/9439725/how-to-detect-if-browser-window-is-scrolled-to-bottom
         loadPearlsList(currentPearlsSelection, 'mostRecent', 10, '', '');
     }
 });

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PeopleCounter from '../PeopleCounter'
 import styles from '../../css/home.module.css'
 import { startCountdownTimer } from '../../js/global-functions.js'
@@ -21,16 +21,16 @@ const Home = () => {
 
   return (
     <div>
-      <div id="header"></div>
+      <div className={styles.header}></div>
 
       <div className={styles.indexPage}>
 
         <div className={styles.page1}>
           {/* <!-- data-router-view is the section being changed during the transition --> */}
-          <h1 id="h1_description_for_SEO" style={{ display: "none" }}>Pray with other Christians around the world
+          <h1 className={styles.h1_description_for_SEO} style={{ display: "none" }}>Pray with other Christians around the world
             live!
           </h1>
-          <audio id="meditation_music">
+          <audio className={styles.meditation_music}>
             <source src="Sea_Space.mp3" type="audio/mpeg"></source>
             {/* <!-- Safari doesn't support .ogg files --> */}
             Your browser does not support the audio element.
@@ -69,39 +69,39 @@ const Home = () => {
                     until next live prayer with others around the world:<br></br></b></i></p>
 
                 <div style={{ textAlign: "center", color: "rgb(255, 255, 255)" }}>
-                  <b> <br></br>
-                    <p id="hours"></p>
-                    <p id="minutes"></p>
-                    <p id="seconds">
-                    </p>
+                  <b>
+                    <br></br>
+                    <p id="hours" className={styles.hours}></p>
+                    <p id="minutes" className={styles.minutes}></p>
+                    <p id="seconds" className={styles.seconds}></p>
                   </b>
                 </div>
                 <br></br>
                 <b>
-                  <p id="prayer_times_description">
+                  <p className={styles.prayer_times_description}>
                     Prayer times:</p>
                 </b>
                 <b>
-                  <div id="times_of_prayer">
-                    <p id="time_one"></p>
-                    <p id="time_two"></p>
-                    <p id="time_three"></p>
+                  <div className={styles.times_of_prayer}>
+                    <p id="time_one" className={styles.time_one}></p>
+                    <p id="time_two" className={styles.time_two}></p>
+                    <p id="time_three" className={styles.time_three}></p>
                   </div>
                 </b>
 
                 <b>
                   {/* <!-- add _animtated to the id animate the number --> */}
-                  <p id="people_in_meditation_top_of_homepage">
+                  <p className={styles.people_in_meditation_top_of_homepage}>
                   </p>
                 </b>
 
 
                 <br></br>
 
-                <div id="bottom_navbar">
-                  <div id="tutorial_button_container">
-                    <img id="tutorial_button_icon" src="images/logo2_512_by_512.png"></img>
-                    <p id="tutorial_button_text">Click for a Tutorial!</p>
+                <div className={styles.bottom_navbar}>
+                  <div className={styles.tutorial_button_container}>
+                    <img className={styles.tutorial_button_icon} src="images/logo2_512_by_512.png"></img>
+                    <p className={styles.tutorial_button_text}>Click for a Tutorial!</p>
                   </div>
 
                 </div>
@@ -110,8 +110,8 @@ const Home = () => {
 
               </div>
 
-              <div id="bottom_of_homepage">
-                <div id="bottom_container">
+              <div className={styles.bottom_of_homepage}>
+                <div className={styles.bottom_container}>
                   <PeopleCounter />
 
 

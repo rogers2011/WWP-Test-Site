@@ -1546,26 +1546,26 @@ if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elain
 
 // console.log("settingsPageCSS added?", document.getElementById(cssId));
 
-// load the necessary css files for settings.html
-var cssId = 'settingsPageCSS';
-if (!document.getElementById(cssId)) // only load the css file if it was not loaded already
-{
-    console.log("ismobillee?", isMobile);
-    var head = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.id = cssId;
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    if (!isMobile) {
-        link.href = 'css/create_prayer_room.css?version=' + Date.now(); // make sure the CSS path is absolute so it is loaded from your servers
-    } else {
-        // link.href = 'css/create_prayer_room-mobile.css?version=' + Date.now();
-        link.href = 'css/create_prayer_room-mobile.css?version=' + Date.now();
-        console.log("link added");
-    }
-    link.media = 'all';
-    head.appendChild(link);
-}
+// // load the necessary css files for settings.html
+// var cssId = 'settingsPageCSS';
+// if (!document.getElementById(cssId)) // only load the css file if it was not loaded already
+// {
+//     console.log("ismobillee?", isMobile);
+//     var head = document.getElementsByTagName('head')[0];
+//     var link = document.createElement('link');
+//     link.id = cssId;
+//     link.rel = 'stylesheet';
+//     link.type = 'text/css';
+//     if (!isMobile) {
+//         link.href = 'css/create_prayer_room.css?version=' + Date.now(); // make sure the CSS path is absolute so it is loaded from your servers
+//     } else {
+//         // link.href = 'css/create_prayer_room-mobile.css?version=' + Date.now();
+//         link.href = 'css/create_prayer_room-mobile.css?version=' + Date.now();
+//         console.log("link added");
+//     }
+//     link.media = 'all';
+//     head.appendChild(link);
+// }
 // cssId = 'globalStylesCSS'; // loaded in barba-transition.js
 // if (!document.getElementById(cssId)) // only load the css file if it was not loaded already
 // {
@@ -1580,19 +1580,19 @@ if (!document.getElementById(cssId)) // only load the css file if it was not loa
 // }
 
 // {/* <script type="text/javascript" src="js/barba-transition.js?version=28"></script> */}
-var scriptId = 'barbaTransitionJS';
-if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
-{
-    var scriptSrc = "js/barba-transition.js?version=" + Date.now();
-    // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
-    console.log("scriptSrc: " + scriptSrc);
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.id = scriptId;
-    script.type = 'text/javascript';
-    script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
-    head.appendChild(script);
-}
+// var scriptId = 'barbaTransitionJS';
+// if (!document.getElementById(scriptId)) // only load the maps api file if it was not loaded already
+// {
+//     var scriptSrc = "js/barba-transition.js?version=" + Date.now();
+//     // $("head").append('<script type="text/javascript" id="' + scriptId + '" src="' + scriptSrc + '"></script>');
+//     console.log("scriptSrc: " + scriptSrc);
+//     var head = document.getElementsByTagName('head')[0];
+//     var script = document.createElement('script');
+//     script.id = scriptId;
+//     script.type = 'text/javascript';
+//     script.src = scriptSrc; // make sure the path is absolute so it is loaded from the server
+//     head.appendChild(script);
+// }
 
 var checkIfScriptLoaded = function () {
     setTimeout(function () {
