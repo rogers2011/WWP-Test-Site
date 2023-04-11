@@ -23,13 +23,9 @@ var prayerRoomMenuClicked = false;
 var intentionsMenuClicked = false;
 var testimonialsMenuClicked = false;
 var pearlsMenuClicked = false;
-
 var currentMenuName = '';
-
 var reportingEntry = false;
-
 var updateRowTimesInterval;
-
 var now;// = new Date();
 var d1, d2, d3;
 var millisTillPrayer1;// = d1 - now;
